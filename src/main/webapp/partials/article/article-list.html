@@ -1,0 +1,16 @@
+<div id="articleList">
+
+    <h2>Liste des articles</h2>
+
+    <ul>
+        <li ng-repeat="article in articles">
+            <a href="#/article/{{article.id}}"><span class="articleTitre">{{article.titre}}</span></a>
+            <button class="button" ng-click="deleteArticle(article)">X</button>
+        </li>
+    </ul>
+
+    <hr/>
+
+    <button ng-click="gotoArticleNewPage()" class="button">Ajouter</button>
+
+</div>
