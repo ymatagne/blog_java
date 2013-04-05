@@ -37,7 +37,7 @@
 <!-- 		<constructor-arg value="${mongodb.database}" /> -->
 <!-- 		<constructor-arg ref="userCreds" /> -->
 <!-- 	</bean> -->
-	<bean id="mongoTemplate" class="org.springframework.data.document.mongodb.MongoTemplate">
+	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
         <constructor-arg name="mongo" ref="mongo"/>
         <constructor-arg name="databaseName" value="${mongodb.dbname}"/>
         <constructor-arg name="userCredentials" ref="mongoCredentials"/>
