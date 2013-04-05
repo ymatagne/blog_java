@@ -1,1 +1,1 @@
-web: sh target/bin/blog
+web: java -cp target/classes:"target/dependency/*" root.StartWebApp
