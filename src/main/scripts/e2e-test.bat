@@ -1,4 +1,4 @@
-@echo off
+@echo on
 
 REM Windows script for running e2e tests
 REM You have to run server and capture some browser first
