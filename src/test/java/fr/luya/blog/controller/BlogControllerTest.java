@@ -16,15 +16,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
 
 import fr.luya.blog.document.Article;
 import fr.luya.blog.service.ArticleService;
@@ -32,14 +29,10 @@ import fr.luya.blog.utils.IntegrationTestUtil;
 import fr.luya.blog.utils.MockBuilder;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@WebAppConfiguration
 @ContextConfiguration(locations = { "file:src/main/resources/spring/web.xml" })
 public class BlogControllerTest {
 
     private ArticleController articleControlleur;
-
-    @Autowired
-    private WebApplicationContext wac;
 
     private MockMvc mockMvc;
 
@@ -68,7 +61,7 @@ public class BlogControllerTest {
                 return true;
             }
         });
-        
+
         when(articleService.create(articleTmp)).thenAnswer(new Answer<Boolean>() {
             @Override
             public Boolean answer(InvocationOnMock invocation) throws Throwable {
@@ -76,7 +69,7 @@ public class BlogControllerTest {
                 return true;
             }
         });
-        
+
         articleControlleur = new ArticleController();
         ReflectionTestUtils.setField(articleControlleur, "service", articleService);
 
