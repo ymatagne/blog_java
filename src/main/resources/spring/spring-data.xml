@@ -31,12 +31,12 @@
     </bean>
 
     <bean id="mongoCredentials" class="org.springframework.data.authentication.UserCredentials">
-        <constructor-arg name="username" value="#{mongoURI.username}" />
-        <constructor-arg name="password" value="#{new java.lang.String(mongoURI.password)}" />
+        <constructor-arg name="username" value="${mongodb.username}" />
+        <constructor-arg name="password" value="${mongodb.password}" />
     </bean>
 
     <bean class="com.mongodb.MongoURI" id="mongoURI">
-        <constructor-arg value="#{systemEnvironment['MONGOHQ_URL']}"  />
+        <constructor-arg value="${mongodb.url}"  />
     </bean>
 
     <bean class="com.mongodb.Mongo" id="mongo">
