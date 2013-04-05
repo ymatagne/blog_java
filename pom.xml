@@ -19,7 +19,6 @@
         <version.junit>4.11</version.junit>
         <version.slf4j>1.6.1</version.slf4j>
 		<version.log4j>1.2.14</version.log4j>
-<!-- 		<version.spring.data.rest>1.0.0.RELEASE</version.spring.data.rest> -->
 		<version.spring.data.mongodb>1.2.0.RELEASE</version.spring.data.mongodb>
 		<version.mongodb.driver>2.11.0-RC1</version.mongodb.driver>	
 		<version.aspectj>1.6.10</version.aspectj>				
@@ -130,13 +129,6 @@
 	    	<scope>compile</scope>
 	    </dependency>
     
-	    <!-- Spring Data Rest -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework.data</groupId> -->
-<!-- 			<artifactId>spring-data-rest-webmvc</artifactId> -->
-<!-- 			<version>${version.spring.data.rest}</version> -->
-<!-- 		</dependency>  -->
-	
 	    <!-- Spring Data MongoDB -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
