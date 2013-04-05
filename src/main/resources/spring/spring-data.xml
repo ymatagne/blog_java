@@ -49,7 +49,7 @@
     </bean>
 
     <bean class="com.mongodb.MongoURI" id="mongoURI">
-        <constructor-arg value="${mongodb.url}"  />
+        <constructor-arg value="#{systemEnvironment['MONGOHQ_URL']}"  />
     </bean>
 
     <bean class="com.mongodb.Mongo" id="mongo">
