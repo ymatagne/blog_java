@@ -44,8 +44,8 @@
     </bean>
 
     <bean id="mongoCredentials" class="org.springframework.data.authentication.UserCredentials">
-        <property name="username" value="#{mongoURI.username}" />
-        <property name="password" value="#{new java.lang.String(mongoURI.password)}" />
+        <constructor-arg name="username" value="#{mongoURI.username}" />
+        <constructor-arg name="password" value="#{new java.lang.String(mongoURI.password)}" />
     </bean>
 
     <bean class="com.mongodb.MongoURI" id="mongoURI">
