@@ -15,6 +15,13 @@ public class IntegrationTestUtil {
     public static byte[] convertObjectToJsonBytes(Object object) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.setSerializationInclusion(JsonSerialize.Inclusion.NON_NULL);
+        // String json = mapper.writeValueAsString(object);
         return mapper.writeValueAsBytes(object);
+    }
+
+    public static <T> Object convertJsonBytesToObject(byte[] src, Class<T> classe) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(JsonSerialize.Inclusion.NON_NULL);
+        return mapper.readValue(src, classe);
     }
 }

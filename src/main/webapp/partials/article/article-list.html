@@ -1,16 +1,26 @@
 <div id="articleList">
 
-    <h2>Liste des superbes articles</h2>
+	<ul>
+		<article ng-repeat="article in articles">
+			<h4>
+				<a href="#/article/{{article.id}}">{{article.titre}}</a>
+			</h4>
+			<p>
+				<small>Article publié le : par {{article.auteur.nom}}
+					{{article.auteur.prenom}}</small>
+			</p>
+			<p>
+				<small>Catégorie : {{article.categorie.nom}}</small>
+			</p>
+			<p>{{article.resume}}</p>
+			<p>
+				<a href="#/article/{{article.id}}">Lire la suite de l'article >></a>
+			</p>
+			<hr />
+		</article>
 
-    <ul>
-        <li ng-repeat="article in articles">
-            <a href="#/article/{{article.id}}"><span class="articleTitre">{{article.titre}}</span></a>
-            <button class="button" ng-click="deleteArticle(article)">X</button>
-        </li>
-    </ul>
+	</ul>
 
-    <hr/>
 
-    <button ng-click="gotoArticleNewPage()" class="button">Ajouter</button>
 
 </div>

@@ -1,0 +1,15 @@
+<div id="categorieList">
+
+	<h2>Liste des categories</h2>
+
+	<ul>
+		<li ng-repeat="categorie in categories"><a
+			href="#/categorie/{{categorie.id}}"><span class="categorieTitre">{{categorie.nom}}</span></a>
+			<button class="btn" ng-click="deleteCategorie(categorie)">X</button></li>
+	</ul>
+
+	<hr />
+
+	<button ng-click="gotoCategorieNewPage()" class="btn">Ajouter</button>
+
+</div>

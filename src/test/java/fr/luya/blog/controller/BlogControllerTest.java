@@ -8,6 +8,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Assert;
@@ -24,6 +25,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import fr.luya.blog.document.Article;
+import fr.luya.blog.document.Auteur;
+import fr.luya.blog.document.Categorie;
+import fr.luya.blog.document.Commentaire;
 import fr.luya.blog.service.ArticleService;
 import fr.luya.blog.utils.IntegrationTestUtil;
 import fr.luya.blog.utils.MockBuilder;
@@ -46,10 +50,25 @@ public class BlogControllerTest {
     @Before
     public void setup() {
         articles = MockBuilder.mockArticles();
+        final Auteur auteur = new Auteur();
+        auteur.setAdmin(true);
+        auteur.setEmail("email");
+        auteur.setId("1");
+        auteur.setNom("nom");
+        auteur.setPassword("password");
+        auteur.setPrenom("prenom");
+        final Categorie categorie = new Categorie();
+        categorie.setId("1");
+        categorie.setNom("nom categorie");
         articleTmp = new Article();
         articleTmp.setTitre("Titre5");
         articleTmp.setId("5");
-
+        articleTmp.setArticle("article");
+        articleTmp.setAuteur(auteur);
+        articleTmp.setCategorie(categorie);
+        articleTmp.setCommentaires(new ArrayList<Commentaire>());
+        articleTmp.setResume("resume");
+        articleTmp.setValide(true);
         final ArticleService articleService = mock(ArticleService.class);
         when(articleService.findAllArticles()).thenReturn(articles);
         when(articleService.findById("1")).thenReturn(articles.get(1));

@@ -1,7 +1,6 @@
 package fr.luya.blog.controller;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -63,7 +62,7 @@ public class ArticleController {
      */
     @RequestMapping(value = "/article", method = RequestMethod.PUT)
     @ResponseBody
-    public Article create(@RequestBody final Article article) {        
+    public Article create(@RequestBody final Article article) {
         service.create(article);
         return article;
 

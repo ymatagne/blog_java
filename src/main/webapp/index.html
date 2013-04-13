@@ -2,42 +2,128 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-  <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-  </head>
-  <body ng-app="blogApp">
-    <!--[if lt IE 7]>
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title></title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width">
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/app.css" rel="stylesheet">
+</head>
+<body ng-app="blogApp">
+	<!--[if lt IE 7]>
       <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
     <![endif]-->
 
-    <!--[if lt IE 9]>
+	<!--[if lt IE 9]>
       <script src="components/es5-shim/es5-shim.js"></script>
       <script src="components/json3/lib/json3.min.js"></script>
     <![endif]-->
+	<header class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container" ng-controller="MenuCtrl">
+				<div class="title">
+					<a href="#" ng-click="uploadArticles()" class="premiere">me</a><a
+						href="#" ng-click="uploadArticles()" class="deuxieme">.</a><a
+						href="#" ng-click="uploadArticles()" class="troisieme">getBlog</a><a
+						href="#" ng-click="uploadArticles()" class="quatrieme">(</a><a>{{selectedCategorie.nom}}</a><a
+						href="#" ng-click="uploadArticles()" class="quatrieme">)</a>
+				</div>
+				<ul class="nav">
+					<li class="divider-vertical"></li>
+					<li class="open">
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						role="button" ng-controller="MenuCtrl"> <b class="deuxieme">.</b><b
+							class="troisieme">addCategory</b><b class="quatrieme">()</b><b
+							class="caret"></b>
+					</a>
+						<ul class="dropdown-menu">
+							<li ng-repeat="categorie in categories"><a
+								ng-click="selectCategorie(categorie)">{{categorie.nom}}</a></li>
+						</ul></li>
+					<li class="divider-vertical"></li>
+					<li><a class="dropCategorie" ng-click="dropCategorie()"> <b
+							class="deuxieme">.</b><b class="troisieme">dropCategory</b><b
+							class="quatrieme">()</b></a></li>
+					<li class="divider-vertical"></li>
+					<div class='container-fluid' ng-controller="TypeaheadCtrl">
+						<b class="deuxieme">.</b><b class="troisieme">search</b><b
+							class="quatrieme">(</b> <input id="searchText" type="text"
+							ng-model="selected"
+							typeahead="state for state in states | filter:$viewValue"><b
+							class="quatrieme_search">)</b>
+					</div>
+				</ul>
+			</div>
+		</div>
+	</header>
 
-    <!-- Add your site or application content here -->
-    <div class="container" ng-view></div>
+	<div class="header_place"></div>
+	<!-- Add your site or application content here -->
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span3 well">
+				<h4>Hello !</h4>
+				<div class="title presentation">
+					<a class="premiere">me</a><a class="deuxieme">.</a><a
+						class="troisieme">getBlog</a><a class="quatrieme">(</a><a>{{selectedCategorie.nom}}</a><a
+						class="quatrieme">)</a>
+				</div>
+				<p>&nbsp;was created in order to share my knowledge and
+					experiences !</p>
+				<p>Problem solving, how to, technical studies, factoring,advices
+					, agility ...all subjects will be treated!</p>
+				<p>Hoping that this blog will be useful, I hope you enjoy
+					reading!</p>
+			</div>
+			<div class="span9">
+				<div class="container" ng-view></div>
+			</div>
+		</div>
+	</div>
 
-	  <script src="lib/angular/angular.js"></script>
-	  <script src="lib/angular/angular-resource.js"></script>
-	  <script src="js/app.js"></script>
-	  <script src="js/services.js"></script>
-	  <script src="js/controllers.js"></script>
-	  <script src="js/filters.js"></script>
-	  <script src="js/directives.js"></script>
 
 
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-    <script>
-      var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-      g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-      s.parentNode.insertBefore(g,s)}(document,'script'));
-    </script>
-  </body>
+
+
+	<footer class="footer">
+		<div class="container">
+			<br />
+			<p>This blog has been created by me.</p>
+			<p>
+				The sources of this blog are available on <a
+					href="https://github.com/ymatagne/blog_java">Github</a>
+			</p>
+			<p>
+				Contact me at <a href="mailto:yan.matagne@gmail.com">yan.matagne@gmail.com</a>
+			</p>
+
+		</div>
+	</footer>
+	<script src="lib/angular/angular.js"></script>
+	<script src="lib/angular/angular-resource.js"></script>
+	<script src="lib/others/jquery.js"></script>
+	<script src="lib/angular/ui-bootstrap.js"></script>
+	<script src="lib/angular/ui-bootstrap-tpls.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/services.js"></script>
+	<script src="js/controllers.js"></script>
+	<script src="js/filters.js"></script>
+	<script src="js/directives.js"></script>
+
+	<script>
+		var _gaq = [ [ '_setAccount', 'UA-XXXXX-X' ], [ '_trackPageview' ] ];
+		(function(d, t) {
+			var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+			g.src = ('https:' == location.protocol ? '//ssl' : '//www')
+					+ '.google-analytics.com/ga.js';
+			s.parentNode.insertBefore(g, s)
+		}(document, 'script'));
+	</script>
+</body>
 </html>
