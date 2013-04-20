@@ -12,4 +12,10 @@ angular.module('blogApp.services', [ 'ngResource' ]).factory('Article',
 			method : 'PUT'
 		}
 	});
+}).factory('Auteur', function($resource) {
+	return $resource('rest/auteur/:id', {}, {
+		'save' : {
+			method : 'PUT'
+		}
+	});
 });

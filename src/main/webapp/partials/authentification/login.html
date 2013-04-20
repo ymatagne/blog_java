@@ -1,0 +1,34 @@
+<div class="well" ng-controller="AuteurControlleur">
+	<div id="loging">
+		<h4>Connexion</h4>
+		<div id="loginAlert" class="text-error"></div>
+		<form class="form-horizontal">
+			<fieldset>
+				<div class="control-group">
+					<label for="auteur.email">Email</label> <input type="text"
+						id="auteur.email" placeholder="Email" ng-model="auteur.email">
+				</div>
+				<div class="control-group">
+					<label for="auteur.password">Password</label> <input
+						type="password" id="auteur.password" placeholder="Password"
+						ng-model="auteur.password">
+				</div>
+				<div class="control-group">
+					<button type="submit" class="btn" ng-click="login()">Sign
+						in</button>
+				</div>
+			</fieldset>
+
+		</form>
+	</div>
+	<div id="menuAdmin">
+		<h4>{{auteur.email}} is connected</h4>
+		<ul class="nav">
+			<li><a ng-click="gotoHome()" ><i class="icon-home"></i> Home</a></li>
+			<li><a ng-click="gotoCategorieNewPage()"><i class="icon-plus"></i> Create new category</a></li>
+			<li><a ng-click="gotoArticleNewPage()"><i class="icon-pencil"></i> Create new article</a></li>
+			<li><a ng-click="gotoArticleNewPage()"><i class="icon-plus"></i> Create new user</a></li>
+			<li><a ng-click="logout()"><i class="icon-off"></i> Logout</a></li>
+		</ul>
+	</div>
+</div>

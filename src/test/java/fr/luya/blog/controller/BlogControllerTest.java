@@ -9,6 +9,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Assert;
@@ -53,7 +54,6 @@ public class BlogControllerTest {
         final Auteur auteur = new Auteur();
         auteur.setAdmin(true);
         auteur.setEmail("email");
-        auteur.setId("1");
         auteur.setNom("nom");
         auteur.setPassword("password");
         auteur.setPrenom("prenom");
@@ -69,6 +69,7 @@ public class BlogControllerTest {
         articleTmp.setCommentaires(new ArrayList<Commentaire>());
         articleTmp.setResume("resume");
         articleTmp.setValide(true);
+        articleTmp.setDateCreation(new Date());
         final ArticleService articleService = mock(ArticleService.class);
         when(articleService.findAllArticles()).thenReturn(articles);
         when(articleService.findById("1")).thenReturn(articles.get(1));

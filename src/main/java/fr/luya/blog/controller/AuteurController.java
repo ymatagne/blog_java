@@ -1,0 +1,84 @@
+package fr.luya.blog.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+import fr.luya.blog.document.Auteur;
+import fr.luya.blog.service.AuteurService;
+
+/**
+ * Controlleur des actions sur les auteurs. Permet d'executer les differentes actions d'ajout, de suppression et de
+ * récuperations des auteurs
+ * 
+ * @author luya
+ */
+@Controller
+public class AuteurController {
+
+    /**
+     * Service appelé par le controlleur. Il permet de faire le lien entre le controller et le répository permettant
+     * d'acceder aux données
+     */
+    @Autowired
+    private AuteurService service;
+
+    /**
+     * Permet de récuperer tous les auteurs présents en base de données.
+     * 
+     * @return une liste contenant tous les auteurs de la base de donénes
+     */
+    @RequestMapping(value = "/auteur", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody
+    List<Auteur> list() {
+        return service.findAllAuteurs();
+    }
+
+    /**
+     * Permet de récueprer un auteur via son id
+     * 
+     * @param id de l'auteur à récuperer
+     * @return l'auteur
+     */
+    @RequestMapping(value = "/auteur/{id}", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody
+    Auteur getById(@PathVariable final String id) {
+        return service.findById(id);
+    }
+
+    /**
+     * Permet de créer un nouvel auteur en base de donnés
+     * 
+     * @param auteur à creer
+     * @return l'auteur créer avec son id
+     */
+//    @PreAuthorize("isAuthenticated()")
+    @RequestMapping(value = "/auteur", method = RequestMethod.PUT)
+    @ResponseBody
+    public Auteur create(@RequestBody final Auteur auteur) {
+        service.create(auteur);
+        return auteur;
+
+    }
+
+    /**
+     * Permet de supprimer un auteur
+     * 
+     * @param id de l'auteur à supprimer
+     */
+    @RequestMapping(value = "/auteur/{id}", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable final String id) {
+        final Auteur auteur = service.findById(id);
+        service.delete(auteur);
+    }
+}

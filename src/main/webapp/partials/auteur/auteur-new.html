@@ -1,0 +1,41 @@
+<div id="auteurNew">
+
+	<form class="form-horizontal">
+		<fieldset>
+			<legend>Création d'un nouveau auteur</legend>
+
+			<div class="control-group">
+				<label for="auteur.titre">Email</label> <input id="auteur.email"
+					type="text" ng-model="auteur.email" />
+			</div>
+
+			<div class="control-group">
+				<label for="auteur.nom">Nom</label>
+				<input id="auteur.nom" type="text" ng-model="auteur.nom"></input>
+			</div>
+
+			<div class="control-group">
+				<label for="auteur.prenom">Prenom</label>
+				<input id="auteur.prenom" type="text" ng-model="auteur.prenom"></input>
+			</div>
+			<div>
+				<label for="auteur.password">Password</label>
+				<input id="auteur.password" type="password" ng-model="auteur.password"></input>
+			</div>
+			
+			<div>
+				<label for="auteur.admin">Admin</label>
+				<input id="auteur.password" type="checkbox" ng-model="auteur.admin"></input>
+			</div>
+			
+			<br/>
+			<button class="btn" ng-click="gotoAuteursListPage()">Retour</button>
+			&nbsp;
+			<button class="btn btn-primary" ng-click="submit()">Sauvegarder</button>
+		</fieldset>
+
+
+
+	</form>
+
+</div>

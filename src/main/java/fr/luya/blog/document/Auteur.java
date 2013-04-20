@@ -1,5 +1,6 @@
 package fr.luya.blog.document;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
@@ -10,31 +11,16 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class Auteur {
 
-    private String id;
+    @Id
+    private String email;
 
     private String nom;
 
     private String prenom;
 
-    private String email;
-
     private boolean admin;
 
     private String password;
-
-    /**
-     * @return the id
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(String id) {
-        this.id = id;
-    }
 
     /**
      * @return the nom
@@ -112,7 +98,6 @@ public class Auteur {
         int result = 1;
         result = prime * result + (admin ? 1231 : 1237);
         result = prime * result + ((email == null) ? 0 : email.hashCode());
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((nom == null) ? 0 : nom.hashCode());
         result = prime * result + ((password == null) ? 0 : password.hashCode());
         result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
@@ -143,13 +128,6 @@ public class Auteur {
                 return false;
             }
         } else if (!email.equals(other.email)) {
-            return false;
-        }
-        if (id == null) {
-            if (other.id != null) {
-                return false;
-            }
-        } else if (!id.equals(other.id)) {
             return false;
         }
         if (nom == null) {

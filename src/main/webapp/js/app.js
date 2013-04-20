@@ -32,6 +32,20 @@ angular.module(
 				templateUrl : 'partials/categorie/categorie-detail.html',
 				controller : CategorieDetailController
 			})
+			
+			.when('/auteur/list', {
+				templateUrl : 'partials/auteur/auteur-list.html',
+				controller : AuteurListController
+			}).when('/auteur/new', {
+				templateUrl : 'partials/auteur/auteur-new.html',
+				controller : AuteurNewController
+			}).when('/auteur/:id', {
+				templateUrl : 'partials/auteur/auteur-detail.html',
+				controller : AuteurDetailController
+			}).when('/auteur/:id', {
+				templateUrl : 'partials/auteur/auteur-detail.html',
+				controller : AuteurDetailController
+			})
 
 			.otherwise({
 				redirectTo : '/article/list'

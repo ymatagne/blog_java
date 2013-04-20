@@ -1,0 +1,41 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+                    http://www.springframework.org/schema/security 
+                    http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+	<http auto-config='true' entry-point-ref="authenticationEntryPoint">
+        <form-login authentication-success-handler-ref="ajaxAuthenticationSuccessHandler"
+                    authentication-failure-handler-ref="ajaxAuthenticationFailureHandler"/>
+        <logout success-handler-ref="ajaxLogoutSuccessHandler" />
+    </http>
+
+    <beans:bean id="authenticationEntryPoint"
+                class="fr.luya.blog.security.Http401DeniedEntryPoint"/>
+    <beans:bean id="ajaxAuthenticationSuccessHandler"
+                class="fr.luya.blog.security.AjaxAuthenticationSuccessHandler"/>
+    <beans:bean id="ajaxAuthenticationFailureHandler"
+                class="fr.luya.blog.security.AjaxAuthenticationFailureHandler"/>
+    <beans:bean id="ajaxLogoutSuccessHandler"
+                class="fr.luya.blog.security.AjaxLogoutSuccessHandler"/>
+    
+        <beans:bean id="localAuthenticationProvider"
+                class="fr.luya.blog.security.LocalAuthenticationProvider"/>
+
+<!-- 	<beans:bean id="encoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder"/> -->
+
+<!-- 	<authentication-manager> -->
+<!-- 		<authentication-provider> -->
+<!-- 			<user-service> -->
+<!-- 				<user name="rod"   password="rod"   authorities="USER" /> -->
+<!-- 				<user name="jimi" password="jimi" authorities="ROLE_USER, ROLE_ADMIN"/> -->
+<!--                 <user name="bob" password="bob" authorities="ROLE_USER"/> -->
+<!-- 			</user-service> -->
+<!-- 		</authentication-provider> -->
+<!-- 	</authentication-manager>	     -->
+ 	<authentication-manager alias="authenticationManager">
+        <authentication-provider ref="localAuthenticationProvider"/>
+    </authentication-manager>
+</beans:beans>   

@@ -7,20 +7,8 @@ src/main/scripts/db/*
 */**/.DS_Store
 target/*
 
-
-db/db_test.0
-
-db/db_test.1
-
-db/db_test.ns
-
-db/journal/lsn
-
-db/db_production.0
-
-db/db_production.1
-
-db/db_production.ns
+db
+db/**
 
 src/main/webapp/WEB-INF/spring.properties
 

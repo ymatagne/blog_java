@@ -1,5 +1,6 @@
 package fr.luya.blog.document;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -23,6 +24,8 @@ public class Article {
     private String resume;
 
     private Boolean valide;
+
+    private Date dateCreation;
 
     @DBRef
     private List<Commentaire> commentaires;
@@ -206,5 +209,19 @@ public class Article {
             return false;
         }
         return true;
+    }
+
+    /**
+     * @return the dateCreation
+     */
+    public Date getDateCreation() {
+        return dateCreation;
+    }
+
+    /**
+     * @param dateCreation the dateCreation to set
+     */
+    public void setDateCreation(Date dateCreation) {
+        this.dateCreation = dateCreation;
     }
 }

@@ -21,15 +21,17 @@
 	text-decoration: none;
 }
 
-.span2 > p {
+.span2>p {
 	text-align: justify;
 	color: #777;
 }
+
 .presentation {
 	font-size: 16.5px;
 	margin: 0;
 	color: #777;
 }
+
 .title .premiere {
 	text-decoration: none;
 	color: rgb(209, 11, 11)
@@ -86,4 +88,8 @@
 
 #searchText {
 	margin: 4px;
+}
+
+#menuAdmin >ul >li {
+	cursor: pointer;
 }

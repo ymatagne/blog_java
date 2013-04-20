@@ -15,7 +15,7 @@
 <link href="css/bootstrap-responsive.css" rel="stylesheet">
 <link href="css/app.css" rel="stylesheet">
 </head>
-<body ng-app="blogApp">
+<body ng-app="blogApp" ng-controller="MenuCtrl">
 	<!--[if lt IE 7]>
       <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
     <![endif]-->
@@ -26,7 +26,7 @@
     <![endif]-->
 	<header class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
-			<div class="container" ng-controller="MenuCtrl">
+			<div class="container">
 				<div class="title">
 					<a href="#" ng-click="uploadArticles()" class="premiere">me</a><a
 						href="#" ng-click="uploadArticles()" class="deuxieme">.</a><a
@@ -38,9 +38,8 @@
 					<li class="divider-vertical"></li>
 					<li class="open">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						role="button" ng-controller="MenuCtrl"> <b class="deuxieme">.</b><b
-							class="troisieme">addCategory</b><b class="quatrieme">()</b><b
-							class="caret"></b>
+						role="button"> <b class="deuxieme">.</b><b class="troisieme">addCategory</b><b
+							class="quatrieme">()</b><b class="caret"></b>
 					</a>
 						<ul class="dropdown-menu">
 							<li ng-repeat="categorie in categories"><a
@@ -67,19 +66,23 @@
 	<!-- Add your site or application content here -->
 	<div class="container-fluid">
 		<div class="row-fluid">
-			<div class="span3 well">
-				<h4>Hello !</h4>
-				<div class="title presentation">
-					<a class="premiere">me</a><a class="deuxieme">.</a><a
-						class="troisieme">getBlog</a><a class="quatrieme">(</a><a>{{selectedCategorie.nom}}</a><a
-						class="quatrieme">)</a>
+			<div class="span3">
+				<div class="well">
+					<h4>Hello !</h4>
+					<div class="title presentation">
+						<a class="premiere">me</a><a class="deuxieme">.</a><a
+							class="troisieme">getBlog</a><a class="quatrieme">(</a><a
+							class="quatrieme">)</a>
+					</div>
+					<p>&nbsp;was created in order to share my knowledge and
+						experiences !</p>
+					<p>Problem solving, how to, technical studies,
+						factoring,advices , agility ...all subjects will be treated!</p>
+					<p>Hoping that this blog will be useful, I hope you enjoy
+						reading!</p>
 				</div>
-				<p>&nbsp;was created in order to share my knowledge and
-					experiences !</p>
-				<p>Problem solving, how to, technical studies, factoring,advices
-					, agility ...all subjects will be treated!</p>
-				<p>Hoping that this blog will be useful, I hope you enjoy
-					reading!</p>
+				<div ng-include=" 'partials/authentification/login.html' ">					
+				</div>
 			</div>
 			<div class="span9">
 				<div class="container" ng-view></div>

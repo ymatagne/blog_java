@@ -1,30 +1,37 @@
 <div id="articleNew">
 
-    <form class="form-horizontal">
-    	<fieldset>
-    		<legend>Création d'un nouveau article</legend>
-    		
-    		<div class="control-group">
-    			<label for="article.titre">Titre</label>
-          		<input id="article.titre" type="text" ng-model="article.titre"/>
-            </div>
-            
-            <div class="control-group">           
-            	<label for="article.article">Article</label>
-            	<textarea id="article.article" rows="10" ng-model="article.article"></textarea>
-            </div>
-            
-            <div class="control-group">          
-            	<label for="article.resume">Resume</label>
-            	<textarea id="article.resume"  rows="4" ng-model="article.resume"></textarea>
-            </div>
-            
-        		<button class="btn" ng-click="gotoArticleListPage()">Retour</button> &nbsp;
-        		<button class="btn btn-primary" ng-click="submit()">Sauvegarder</button>
-    	</fieldset>
+	<form class="form-horizontal">
+		<fieldset>
+			<legend>Création d'un nouveau article</legend>
 
-         
+			<div class="control-group">
+				<label for="article.titre">Titre</label> <input id="article.titre"
+					type="text" ng-model="article.titre" />
+			</div>
 
-    </form>
+			<div class="control-group">
+				<label for="article.article">Article</label>
+				<textarea id="article.article" rows="10" ng-model="article.article"></textarea>
+			</div>
+
+			<div class="control-group">
+				<label for="article.resume">Resume</label>
+				<textarea id="article.resume" rows="4" ng-model="article.resume"></textarea>
+			</div>
+			<div>
+				<label for="article.categorie">Categorie</label>
+				<select id="article.categorie" ng-model="article.categorie"
+					ng-options="categorie as categorie.nom for categorie in categories"></select>
+			</div>
+			
+			<br/>
+			<button class="btn" ng-click="gotoArticleListPage()">Retour</button>
+			&nbsp;
+			<button class="btn btn-primary" ng-click="submit()">Sauvegarder</button>
+		</fieldset>
+
+
+
+	</form>
 
 </div>
