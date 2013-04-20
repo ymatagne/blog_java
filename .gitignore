@@ -9,7 +9,3 @@ target/*
 
 db
 db/**
-
-src/main/webapp/WEB-INF/spring.properties
-
-src/main/webapp/WEB-INF/spring.properties
