@@ -50,6 +50,7 @@ public class CategorieController {
      * @return l'categorie
      */
     @RequestMapping(value = "/categorie/{id}", method = RequestMethod.GET, produces = "application/json")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     public @ResponseBody
     Categorie getById(@PathVariable final String id) {
         return service.findById(id);
@@ -61,8 +62,8 @@ public class CategorieController {
      * @param categorie à creer
      * @return l'categorie créer avec son id
      */
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @RequestMapping(value = "/categorie", method = RequestMethod.PUT)
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @ResponseBody
     public Categorie create(@RequestBody final Categorie categorie) {
         service.create(categorie);
@@ -76,6 +77,7 @@ public class CategorieController {
      * @param id de l'categorie à supprimer
      */
     @RequestMapping(value = "/categorie/{id}", method = RequestMethod.DELETE)
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable final String id) {
         final Categorie categorie = service.findById(id);

@@ -38,6 +38,7 @@ public class AuteurController {
      * @return une liste contenant tous les auteurs de la base de donénes
      */
     @RequestMapping(value = "/auteur", method = RequestMethod.GET, produces = "application/json")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public @ResponseBody
     List<Auteur> list() {
         return service.findAllAuteurs();
@@ -50,6 +51,7 @@ public class AuteurController {
      * @return l'auteur
      */
     @RequestMapping(value = "/auteur/{id}", method = RequestMethod.GET, produces = "application/json")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public @ResponseBody
     Auteur getById(@PathVariable final String id) {
         return service.findById(id);
@@ -61,8 +63,8 @@ public class AuteurController {
      * @param auteur à creer
      * @return l'auteur créer avec son id
      */
-//    @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/auteur", method = RequestMethod.PUT)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ResponseBody
     public Auteur create(@RequestBody final Auteur auteur) {
         service.create(auteur);
@@ -76,6 +78,7 @@ public class AuteurController {
      * @param id de l'auteur à supprimer
      */
     @RequestMapping(value = "/auteur/{id}", method = RequestMethod.DELETE)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable final String id) {
         final Auteur auteur = service.findById(id);

@@ -113,8 +113,11 @@ function AuteurControlleur($scope, $http, $location, Auteur) {
 	$scope.gotoArticleNewPage = function() {
 		$location.path("/article/new");
 	};
-	$scope.gotoCategorieNewPage = function() {
-		$location.path("/categorie/new");
+	$scope.gotoCategorieListPage = function() {
+		$location.path("/categorie/list");
+	};
+	$scope.gotoAuteurListPage = function() {
+		$location.path("/auteur/list");
 	};
 	$scope.gotoHome = function() {
 		$location.path("/");
@@ -122,26 +125,20 @@ function AuteurControlleur($scope, $http, $location, Auteur) {
 	$scope.login = function() {
 		var data = "j_username=" + $scope.auteur.email + "&j_password="
 				+ $scope.auteur.password + "&submit=Login";
-		$http
-				.post('j_spring_security_check', data, {
-					headers : {
-						'Content-Type' : 'application/x-www-form-urlencoded',
-					}
-				})
-				.success(
-						function(data, status, headers, config) {
-							jQuery('#loging').hide();
-							jQuery('#menuAdmin').show();
-						})
-				.error(
-						function(data, status, headers, config) {
-							jQuery('#loginAlert').html(
-									"Wrong username or password !");
-							jQuery('#loginAlert').show();
-							setTimeout(function() {
-								jQuery('#loginAlert').hide();
-							}, 4000);
-						});
+		$http.post('j_spring_security_check', data, {
+			headers : {
+				'Content-Type' : 'application/x-www-form-urlencoded',
+			}
+		}).success(function(data, status, headers, config) {
+			jQuery('#loging').hide();
+			jQuery('#menuAdmin').show();
+		}).error(function(data, status, headers, config) {
+			jQuery('#loginAlert').html("Wrong username or password !");
+			jQuery('#loginAlert').show();
+			setTimeout(function() {
+				jQuery('#loginAlert').hide();
+			}, 4000);
+		});
 	};
 	$scope.logout = function() {
 		$http.get('j_spring_security_logout').success(
@@ -156,23 +153,9 @@ function AuteurControlleur($scope, $http, $location, Auteur) {
 	};
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function AuteurListController($scope, $location, $filter, Auteur) {
-	
-		$scope.auteurs = Auteur.query();
+
+	$scope.auteurs = Auteur.query();
 
 	$scope.gotoAuteurNewPage = function() {
 		$location.path("/auteur/new");
@@ -207,11 +190,6 @@ function AuteurNewController($scope, $location, Auteur) {
 		$location.path("/");
 	};
 }
-
-
-
-
-
 
 function TypeaheadCtrl($scope) {
 

@@ -46,6 +46,10 @@ angular.module(
 				templateUrl : 'partials/auteur/auteur-detail.html',
 				controller : AuteurDetailController
 			})
+			
+			
+			.when('/404', {
+				templateUrl : 'partials/authentification/erreur.html'			})
 
 			.otherwise({
 				redirectTo : '/article/list'

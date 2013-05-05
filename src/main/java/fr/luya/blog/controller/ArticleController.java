@@ -61,8 +61,7 @@ public class ArticleController {
      * @param article à creer
      * @return l'article créer avec son id
      */
-    @PreAuthorize(
-            "hasAnyRole('ROLE_STUDENT')")
+    @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
     @RequestMapping(value = "/article", method = RequestMethod.PUT)
     @ResponseBody
     public Article create(@RequestBody final Article article) {
@@ -77,6 +76,7 @@ public class ArticleController {
      * @param id de l'article à supprimer
      */
     @RequestMapping(value = "/article/{id}", method = RequestMethod.DELETE)
+    @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable final String id) {
         final Article article = service.findById(id);
