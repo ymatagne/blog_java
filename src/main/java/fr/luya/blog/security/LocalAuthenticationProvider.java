@@ -11,7 +11,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.authority.GrantedAuthorityImpl;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.util.StringUtils;
@@ -57,9 +57,9 @@ public class LocalAuthenticationProvider extends AbstractUserDetailsAuthenticati
 
         final List<GrantedAuthority> auths = new ArrayList<GrantedAuthority>();
         if (auteur.isAdmin()) {
-            auths.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+            auths.add(new GrantedAuthorityImpl("ROLE_ADMIN"));
         }
-        auths.add(new SimpleGrantedAuthority("ROLE_STUDENT"));
+        auths.add(new GrantedAuthorityImpl("ROLE_USER"));
 
         return new User(username, password, true, // enabled
                 true, // account not expired

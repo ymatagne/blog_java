@@ -1,37 +1,39 @@
 <div id="articleNew">
 
-	<form class="form-horizontal">
+
+	<form name="article" class="form-horizontal">
+	<div ng-show="displayError">Please agree and sign.</div>
 		<fieldset>
-			<legend>Création d'un nouveau article</legend>
-
-			<div class="control-group">
-				<label for="article.titre">Titre</label> <input id="article.titre"
-					type="text" ng-model="article.titre" />
-			</div>
-
-			<div class="control-group">
-				<label for="article.article">Article</label>
-				<textarea id="article.article" rows="10" ng-model="article.article"></textarea>
-			</div>
-
-			<div class="control-group">
-				<label for="article.resume">Resume</label>
-				<textarea id="article.resume" rows="4" ng-model="article.resume"></textarea>
-			</div>
-			<div>
-				<label for="article.categorie">Categorie</label>
-				<select id="article.categorie" ng-model="article.categorie"
-					ng-options="categorie as categorie.nom for categorie in categories"></select>
-			</div>
-			
-			<br/>
-			<button class="btn" ng-click="gotoArticleListPage()">Retour</button>
-			&nbsp;
-			<button class="btn btn-primary" ng-click="submit()">Sauvegarder</button>
-		</fieldset>
+			<h4>Create a new article</h4>
+			<accordion> <accordion-group
+				heading="Title of your article" is-open="true"> <input
+				id="article.titre" type="text" ng-model="article.titre"
+				placeholder="Enter your title..." required /> </accordion-group> <accordion-group
+				heading="Resume in a few lines"> <textarea
+				id="article.resume" rows="4" ng-model="article.resume"
+				placeholder="Enter resume..."></textarea> </accordion-group> <accordion-group
+				heading="Write your article"> <textarea
+				id="tinymce" ui-tinymce ng-model="article.article"
+				placeholder="Enter article..."></textarea> </accordion-group> <accordion-group
+				heading="Categorize your article" required> <label
+				for="article.categorie">Choose your category : </label> <select
+				id="article.categorie" ng-model="article.categorie"
+				ng-options="categorie as categorie.nom for categorie in categories" required></select>
+</div>
+</accordion-group>
+</accordion>
 
 
 
-	</form>
+
+
+
+<br />
+<button class="btn" ng-click="gotoArticleListPage()">Back</button>
+&nbsp;
+<button class="btn btn-primary" ng-click="submit()"
+	ng-disabled="article.$invalid">Save</button>
+</fieldset>
+</form>
 
 </div>

@@ -50,7 +50,7 @@ public class CategorieController {
      * @return l'categorie
      */
     @RequestMapping(value = "/categorie/{id}", method = RequestMethod.GET, produces = "application/json")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
     public @ResponseBody
     Categorie getById(@PathVariable final String id) {
         return service.findById(id);

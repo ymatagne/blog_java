@@ -130,17 +130,24 @@ function AuteurControlleur($scope, $http, $location, Auteur) {
 				'Content-Type' : 'application/x-www-form-urlencoded',
 			}
 		}).success(function(data, status, headers, config) {
+			$scope.auteur = Auteur.get({
+				id : $scope.auteur.email
+			}, function(auteur) {
+			});
 			jQuery('#loging').hide();
 			jQuery('#menuAdmin').show();
 		}).error(function(data, status, headers, config) {
+			$scope.auteur =new Auteur();
 			jQuery('#loginAlert').html("Wrong username or password !");
 			jQuery('#loginAlert').show();
 			setTimeout(function() {
 				jQuery('#loginAlert').hide();
 			}, 4000);
+			$location.path("/");
 		});
 	};
 	$scope.logout = function() {
+		$scope.auteur =new Auteur();
 		$http.get('j_spring_security_logout').success(
 				function(data, status, headers, config) {
 					jQuery('#loging').show();
@@ -148,7 +155,8 @@ function AuteurControlleur($scope, $http, $location, Auteur) {
 					jQuery('#loginAlert').html("logged out");
 					setTimeout(function() {
 						jQuery('#loginAlert').hide();
-					}, 4000);
+					}, 2000);
+					$location.path("/");
 				});
 	};
 }

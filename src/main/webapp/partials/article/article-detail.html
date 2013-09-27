@@ -5,7 +5,7 @@
     <div class="articleTitre">{{article.titre}}</div>
     
     
-    <div class="articleTitre">{{article.article}}</div>
+    <div class="articleTitre" ng-bind-html-unsafe="article.article" ></div>
     
     
     <div class="articleTitre">{{article.resume}}</div>

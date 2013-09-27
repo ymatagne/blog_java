@@ -51,7 +51,7 @@ public class AuteurController {
      * @return l'auteur
      */
     @RequestMapping(value = "/auteur/{id}", method = RequestMethod.GET, produces = "application/json")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
     public @ResponseBody
     Auteur getById(@PathVariable final String id) {
         return service.findById(id);

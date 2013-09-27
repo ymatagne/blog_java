@@ -29,7 +29,7 @@
 
         <intercept-url
             access="hasAnyRole(&apos;ROLE_USER&apos;,&apos;ROLE_ADMIN&apos;)"
-            pattern="/partials/article/*new*" />
+            pattern="/partials/article/article-new.html" />
     </http>
 
     <beans:bean

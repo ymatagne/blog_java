@@ -2,7 +2,7 @@
 // Declare app level module which depends on filters, and services
 angular.module(
 		'blogApp',
-		[ 'ui.bootstrap', 'blogApp.filters', 'blogApp.services',
+		[ 'ui.tinymce','ui.bootstrap', 'blogApp.filters', 'blogApp.services',
 				'blogApp.directives' ]).config(
 		[ '$routeProvider', function($routeProvider) {
 			$routeProvider.when('/article/list', {
