@@ -41,7 +41,7 @@ public class CommentaireRepositoryTest {
 
         for (int i = 0; i < 6; i++) {
             final Commentaire commentaire = new Commentaire();
-            commentaire.setId(Integer.toString(i));
+//            commentaire.setId(Integer.toString(i));
             commentaire.setCommentaire("commentaire" + i);
             commentaire.setDateCreation(new Date());
             commentaire.setEmail("email" + i);
@@ -82,7 +82,7 @@ public class CommentaireRepositoryTest {
     @Test
     public void shouldAddCommentaire() {
         final Commentaire commentaire = new Commentaire();
-        commentaire.setId("111");
+//        commentaire.setId("111");
         commentaire.setCommentaire("commentaire7");
         commentaire.setDateCreation(new Date());
         commentaire.setEmail("email7");
@@ -98,7 +98,7 @@ public class CommentaireRepositoryTest {
     @Test
     public void shouldDeleteCommentaire() {
         final Commentaire commentaire = new Commentaire();
-        commentaire.setId(Integer.toString(1));
+//        commentaire.setId(Integer.toString(1));
         commentaire.setCommentaire("commentaire1");
         commentaire.setDateCreation(new Date());
         commentaire.setEmail("email1");
@@ -114,7 +114,7 @@ public class CommentaireRepositoryTest {
     @Test
     public void shouldUpdateCommentaire() {
         final Commentaire commentaire = new Commentaire();
-        commentaire.setId(Integer.toString(1));
+//        commentaire.setId(Integer.toString(1));
         commentaire.setCommentaire("commentaire666");
         commentaire.setDateCreation(new Date());
         commentaire.setEmail("emailemail");

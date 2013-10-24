@@ -29,7 +29,6 @@ public class LocalAuthenticationProvider extends AbstractUserDetailsAuthenticati
     @Override
     protected void additionalAuthenticationChecks(UserDetails arg0, UsernamePasswordAuthenticationToken arg1)
             throws AuthenticationException {
-        // TODO Auto-generated method stub
 
     }
 
@@ -45,7 +44,6 @@ public class LocalAuthenticationProvider extends AbstractUserDetailsAuthenticati
         }
 
         final Auteur auteur = auteurService.findById(username);
-        // .getByUsernameAndPassword(username, encoder.encodePassword(password, null));
         if (auteur == null) {
             logger.warn("Username {} : username not found", username);
             throw new BadCredentialsException("Invalid Username");
@@ -61,11 +59,7 @@ public class LocalAuthenticationProvider extends AbstractUserDetailsAuthenticati
         }
         auths.add(new GrantedAuthorityImpl("ROLE_USER"));
 
-        return new User(username, password, true, // enabled
-                true, // account not expired
-                true, // credentials not expired
-                true, // account not locked
-                auths);
+        return new User(username, password, true, true, true, true, auths);
     }
 
 }

@@ -1,5 +1,7 @@
 package fr.luya.blog.controller;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import fr.luya.blog.document.Article;
+import fr.luya.blog.document.Commentaire;
 import fr.luya.blog.service.ArticleService;
 
 /**
@@ -65,9 +68,14 @@ public class ArticleController {
     @RequestMapping(value = "/article", method = RequestMethod.PUT)
     @ResponseBody
     public Article create(@RequestBody final Article article) {
-        service.create(article);
+        if (article.getId() == null) {
+            article.setDateCreation(new Date());
+            article.setCommentaires(new ArrayList<Commentaire>());
+            service.create(article);
+        } else {
+            service.update(article);
+        }
         return article;
-
     }
 
     /**

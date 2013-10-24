@@ -66,10 +66,8 @@ public class BlogControllerTest {
         articleTmp.setArticle("article");
         articleTmp.setAuteur(auteur);
         articleTmp.setCategorie(categorie);
-        articleTmp.setCommentaires(new ArrayList<Commentaire>());
         articleTmp.setResume("resume");
         articleTmp.setValide(true);
-        articleTmp.setDateCreation(new Date());
         final ArticleService articleService = mock(ArticleService.class);
         when(articleService.findAllArticles()).thenReturn(articles);
         when(articleService.findById("1")).thenReturn(articles.get(1));

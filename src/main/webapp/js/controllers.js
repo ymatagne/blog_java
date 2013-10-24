@@ -1,7 +1,9 @@
 'use strict';
 
-function ArticleListController($scope, $location, $filter, Article) {
+function ArticleListController($scope, $location, $cookieStore, $filter,
+		Article) {
 	$scope.articles = null;
+	$scope.cookieStore = $cookieStore;
 	if ($scope.selectedCategorie != null) {
 		$scope.articlesTmp = Article
 				.query(function() {
@@ -31,18 +33,53 @@ function ArticleListController($scope, $location, $filter, Article) {
 	};
 }
 
-function ArticleDetailController($scope, $routeParams, $location, Article) {
+function ArticleDetailController($scope, $routeParams, $location,
+		$anchorScroll, Article, Commentaire) {
+	$scope.commentaire = new Commentaire();
 	$scope.article = Article.get({
 		id : $routeParams.id
 	}, function(article) {
 	});
+	$scope.goToComments = function() {
+		$location.hash('titleComment');
+		$anchorScroll();
+	}
+	$scope.gotoArticleListPage = function() {
+		$location.path("/");
+	};
+	$scope.submitForm = function() {
+		$scope.commentaire.dateCreation = new Date();
+		$scope.article.commentaires.push($scope.commentaire);
+		Commentaire.save($scope.article, function() {
+			$scope.commentaire = new Commentaire();
+		});
+	};
+}
+
+function ArticleNewController($scope, $location, $cookieStore, Article,
+		Categorie) {
+	$scope.categories = Categorie.query();
+	$scope.submit = function() {
+		$scope.article.auteur = $cookieStore.get('USER');
+		Article.save($scope.article, function(articles) {
+			$location.path('/');
+		});
+	};
 	$scope.gotoArticleListPage = function() {
 		$location.path("/");
 	};
 }
-
-function ArticleNewController($scope, $location, Article, Categorie) {
-	$scope.categories = Categorie.query();
+function ArticleUpdateController($scope, $location, $routeParams, $timeout,
+		Article) {
+	$scope.article = new Article();
+	Article.get({
+		id : $routeParams.id
+	}, function(article) {
+		$scope.article = article;
+		$timeout(function() {
+			tinyMCE.activeEditor.setContent(article.article);
+		}, 500);
+	});
 	$scope.submit = function() {
 		Article.save($scope.article, function(articles) {
 			$location.path('/');
@@ -52,7 +89,6 @@ function ArticleNewController($scope, $location, Article, Categorie) {
 		$location.path("/");
 	};
 }
-
 function CategorieListController($scope, $location, Categorie) {
 	$scope.categories = Categorie.query();
 	$scope.gotoCategorieNewPage = function() {
@@ -107,7 +143,7 @@ function MenuCtrl($scope, $location, Article, Categorie) {
 	};
 }
 
-function AuteurControlleur($scope, $http, $location, Auteur) {
+function AuteurControlleur($scope, $http, $cookieStore, $location, Auteur) {
 	jQuery('#menuAdmin').hide();
 	$scope.auteur = new Auteur();
 	$scope.gotoArticleNewPage = function() {
@@ -133,11 +169,13 @@ function AuteurControlleur($scope, $http, $location, Auteur) {
 			$scope.auteur = Auteur.get({
 				id : $scope.auteur.email
 			}, function(auteur) {
+				$cookieStore.put('USER', auteur);
 			});
 			jQuery('#loging').hide();
 			jQuery('#menuAdmin').show();
 		}).error(function(data, status, headers, config) {
-			$scope.auteur =new Auteur();
+			$scope.auteur = new Auteur();
+			$cookieStore.put('USER', auteur.email);
 			jQuery('#loginAlert').html("Wrong username or password !");
 			jQuery('#loginAlert').show();
 			setTimeout(function() {
@@ -147,9 +185,10 @@ function AuteurControlleur($scope, $http, $location, Auteur) {
 		});
 	};
 	$scope.logout = function() {
-		$scope.auteur =new Auteur();
+		$scope.auteur = new Auteur();
 		$http.get('j_spring_security_logout').success(
 				function(data, status, headers, config) {
+					$cookieStore.put('USER', null);
 					jQuery('#loging').show();
 					jQuery('#menuAdmin').hide();
 					jQuery('#loginAlert').html("logged out");

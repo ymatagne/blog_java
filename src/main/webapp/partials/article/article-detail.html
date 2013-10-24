@@ -1,17 +1,68 @@
 <div id="articleDetail">
+	<div class="form-horizontal">
+		<h4>{{article.titre}}</h4>
+		<p class="muted">
+			<small>Article published on {{article.dateCreation |
+				date:'MM/dd/yyyy'}} by <a ng-click="goToArticleAuteur(article)">{{article.auteur.nom}}
+					{{article.auteur.prenom}}</a>
+			</small> <br /> <small>Category: <a
+				ng-click="selectCategorie(article.categorie)">{{article.categorie.nom}}</a></small>
+			<br /> <small>Comments: <a ng-click="goToComments()">{{article.commentaires.length}}</a>
+			</small>
+		</p>
+		<legend></legend>
+		<article ng-bind-html-unsafe="article.article"></article>
 
-    <h2>Detail</h2>
+		<br />
+		<legend></legend>
+		<h4>Others articles:</h4>
 
-    <div class="articleTitre">{{article.titre}}</div>
-    
-    
-    <div class="articleTitre" ng-bind-html-unsafe="article.article" ></div>
-    
-    
-    <div class="articleTitre">{{article.resume}}</div>
+		<br />
+		<legend></legend>
+		<h4 id="titleComment">Comments ({{article.commentaires.length}})</h4>
+		<div class="well" ng-repeat="commentaire in article.commentaires">
+			<p class="muted">
+				<small>{{commentaire.email}} wrote
+					{{commentaire.dateCreation | date:'short'}} : </small>
+			</p>
+			<p>{{commentaire.commentaire}}</p>
 
-    <hr/>
+		</div>
+		<legend></legend>
+		<h4>Add a comment</h4>
 
-    <button class="btn" ng-click="gotoArticleListPage()">&lt; Retour</button>
+		<form name="commentaireForm" class="form" novalidate
+			ng-submit="submitForm();">
+			<div ng-show="displayError">Please agree and sign.</div>
 
+			<fieldset>
+				<div class="control-group">
+					<label class="control-label" for="commentaire.email">Email</label>
+					<div class="controls">
+						<input type="email" id="commentaire.email"
+							ng-model="commentaire.email" placeholder="Email" required />
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="commentaire.commentaire">Message</label>
+					<div class="controls">
+						<textarea type="text" rows="3" id="commentaire.commentaire"
+							ng-model="commentaire.commentaire" placeholder="Message" required></textarea>
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						<button type="submit" class="btn btn-primary"
+							ng-disabled="commentaireForm.$invalid">Add</button>
+					</div>
+				</div>
+			</fieldset>
+
+			<br />
+			<button class="btn" ng-click="gotoArticleListPage()">Back</button>
+			<br />
+
+		</form>
+
+	</div>
 </div>

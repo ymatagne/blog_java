@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.luya.blog.document.Article;
+import fr.luya.blog.document.Commentaire;
 import fr.luya.blog.repository.ArticleRepository;
 
 /**
@@ -47,6 +48,11 @@ public class ArticleService {
             return false;
 
         existingArticle.setTitre(article.getTitre());
+        existingArticle.setAuteur(article.getAuteur());
+        existingArticle.setCategorie(article.getCategorie());
+        existingArticle.setCommentaires(article.getCommentaires());
+        existingArticle.setResume(article.getResume());
+        existingArticle.setArticle(article.getArticle());
 
         Article saved = repository.save(existingArticle);
         if (saved == null)
@@ -91,5 +97,25 @@ public class ArticleService {
      */
     public Article findById(final String id) {
         return repository.findById(id);
+    }
+
+    /**
+     * Permet d'ajouter un commentaire a un article
+     * 
+     * @param article sur lequel on souhaite ajoute un commentaire
+     */
+    public Boolean addCommentaire(final Article article) {
+        Article existingArticle = repository.findById(article.getId());
+        if (existingArticle == null)
+            return false;
+        // commentaire.setId(UUID.randomUUID().toString());
+        // existingArticle.getCommentaires().add(commentaire);
+        existingArticle.setCommentaires(article.getCommentaires());
+
+        Article saved = repository.save(existingArticle);
+        if (saved == null)
+            return false;
+
+        return true;
     }
 }

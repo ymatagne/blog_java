@@ -27,7 +27,7 @@ public class CommentaireService {
      * @return l'état de la création
      */
     public Boolean create(final Commentaire commentaire) {
-        commentaire.setId(UUID.randomUUID().toString());
+//        commentaire.setId(UUID.randomUUID().toString());
         final Commentaire saved = repository.save(commentaire);
         if (saved == null)
             return false;
@@ -42,17 +42,17 @@ public class CommentaireService {
      * @return l'état de la mise à jour
      */
     public Boolean update(final Commentaire commentaire) {
-        Commentaire existingCommentaire = repository.findOne(commentaire.getId());
-        if (existingCommentaire == null)
-            return false;
-
-        existingCommentaire.setCommentaire(commentaire.getCommentaire());
-        existingCommentaire.setDateCreation(commentaire.getDateCreation());
-        existingCommentaire.setEmail(commentaire.getEmail());
-
-        Commentaire saved = repository.save(existingCommentaire);
-        if (saved == null)
-            return false;
+//        Commentaire existingCommentaire = repository.findOne(commentaire.getId());
+//        if (existingCommentaire == null)
+//            return false;
+//
+//        existingCommentaire.setCommentaire(commentaire.getCommentaire());
+//        existingCommentaire.setDateCreation(commentaire.getDateCreation());
+//        existingCommentaire.setEmail(commentaire.getEmail());
+//
+//        Commentaire saved = repository.save(existingCommentaire);
+//        if (saved == null)
+//            return false;
 
         return true;
     }
@@ -64,14 +64,14 @@ public class CommentaireService {
      * @return l'état de la suppression
      */
     public Boolean delete(final Commentaire commentaire) {
-        final Commentaire existingCommentaire = repository.findOne(commentaire.getId());
-        if (existingCommentaire == null)
-            return false;
-
-        repository.delete(existingCommentaire);
-        final Commentaire deletedCommentaire = repository.findOne(commentaire.getId());
-        if (deletedCommentaire != null)
-            return false;
+//        final Commentaire existingCommentaire = repository.findOne(commentaire.getId());
+//        if (existingCommentaire == null)
+//            return false;
+//
+//        repository.delete(existingCommentaire);
+//        final Commentaire deletedCommentaire = repository.findOne(commentaire.getId());
+//        if (deletedCommentaire != null)
+//            return false;
 
         return true;
     }

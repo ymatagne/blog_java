@@ -49,7 +49,7 @@ public class CommentaireControllerTest {
         commentaires = MockBuilder.mockCommentaires();
         commentaireTmp = new Commentaire();
         commentaireTmp.setCommentaire("Titre5");
-        commentaireTmp.setId("5");
+//        commentaireTmp.setId("5");
         commentaireTmp.setDateCreation(new Date());
         commentaireTmp.setEmail("mail5");
 

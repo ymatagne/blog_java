@@ -15,7 +15,6 @@ public class IntegrationTestUtil {
     public static byte[] convertObjectToJsonBytes(Object object) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.setSerializationInclusion(JsonSerialize.Inclusion.NON_NULL);
-        // String json = mapper.writeValueAsString(object);
         return mapper.writeValueAsBytes(object);
     }
 

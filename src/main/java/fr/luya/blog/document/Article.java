@@ -27,7 +27,7 @@ public class Article {
 
     private Date dateCreation;
 
-    @DBRef
+//    @DBRef
     private List<Commentaire> commentaires;
 
     @DBRef

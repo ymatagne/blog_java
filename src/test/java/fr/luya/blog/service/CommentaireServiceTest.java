@@ -35,7 +35,7 @@ public class CommentaireServiceTest {
 
         for (int i = 0; i < 6; i++) {
             final Commentaire commentaire = new Commentaire();
-            commentaire.setId(Integer.toString(i));
+//            commentaire.setId(Integer.toString(i));
             commentaire.setCommentaire("commentaire" + i);
             commentaire.setDateCreation(new Date());
             commentaire.setEmail("email" + i);
@@ -57,12 +57,12 @@ public class CommentaireServiceTest {
     @Test
     public void shouldAddCommentaires() {
         final Commentaire commentaire = new Commentaire();
-        commentaire.setId("111");
+//        commentaire.setId("111");
         commentaire.setCommentaire("commentaire7");
         commentaire.setDateCreation(new Date());
         commentaire.setEmail("email7");
         Assert.assertTrue(service.create(commentaire));
-        Assert.assertNotNull(commentaire.getId());
+//        Assert.assertNotNull(commentaire.getId());
     }
 
     /**

@@ -1,22 +1,28 @@
 <div id="articleList">
 
 	<ul>
-		<article ng-repeat="article in articles">
+		<article class="well" ng-repeat="article in articles">
 			<h4>
-				<a href="#/article/{{article.id}}">{{article.titre}}</a>
+				<a href="#/article/{{article.id}}">{{article.titre}}</a> <a
+					ng-show="cookieStore.get('USER').admin"
+					href="#/article/update/{{article.id}}"><i class="icon-edit"></i></a> <a
+					ng-show="cookieStore.get('USER').admin"
+					ng-click="deleteArticle(article)"><i class="icon-trash"></i></a>
 			</h4>
-			<p>
-				<small>Article publié le : par {{article.auteur.nom}}
-					{{article.auteur.prenom}}</small>
+
+			<p class="muted">
+				<small> Article published on {{article.dateCreation |
+					date:'MM/dd/yyyy'}} by <a ng-click="goToArticleAuteur(article)">{{article.auteur.nom}}
+						{{article.auteur.prenom}}</a>
+				</small> <br /> <small> Category: <a
+					ng-click="selectCategorie(article.categorie)">{{article.categorie.nom}}</a></small>
+				<br /> <small>Comments: {{article.commentaires.length}}</small>
 			</p>
-			<p>
-				<small>Catégorie : {{article.categorie.nom}}</small>
-			</p>
+			<legend></legend>
 			<p>{{article.resume}}</p>
 			<p>
 				<a href="#/article/{{article.id}}">Lire la suite de l'article >></a>
 			</p>
-			<hr />
 		</article>
 
 	</ul>

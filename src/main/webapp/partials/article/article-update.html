@@ -1,0 +1,40 @@
+<div id="articleUpdate">
+
+	<form name="article" class="form-horizontal">
+		<div ng-show="displayError">Please agree and sign.</div>
+		<fieldset>
+			<h4>Modify article</h4>
+			<accordion close-others="false"> <accordion-group
+				heading="Title of your article" is-open="true"> <input
+				id="article.titre" type="text" ng-model="article.titre"
+				placeholder="Enter your title..." required /> </accordion-group> <accordion-group
+				heading="Resume in a few lines" is-open="true"> <textarea
+				class="field span12" id="article.resume" rows="4"
+				ng-model="article.resume" placeholder="Enter resume..."></textarea>
+			</accordion-group> <accordion-group heading="Write your article" is-open="true">
+			<textarea id="tinymce" ui-tinymce ng-model="article.article"
+				placeholder="Enter article..."></textarea> </accordion-group> <accordion-group
+				heading="Categorize your article" required is-open="true">
+			<label for="article.categorie">Choose your category : </label> <select
+				id="article.categorie" ng-model="article.categorie.id"
+				ng-options="cat.id as cat.nom for cat in categories" required></select>
+</div>
+</accordion-group>
+</accordion>
+
+
+
+
+
+
+<br />
+<button class="btn" ng-click="gotoArticleListPage()">Back</button>
+&nbsp;
+<button class="btn btn-primary" ng-click="submit()"
+	ng-disabled="article.$invalid">Save</button>
+</fieldset>
+</form>
+
+<br />
+<br />
+</div>
