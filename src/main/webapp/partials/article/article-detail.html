@@ -1,6 +1,6 @@
 <div id="articleDetail">
 	<div class="form-horizontal">
-		<h4>{{article.titre}}</h4>
+		<h4 ng-bind-html-unsafe="article.titre"></h4>
 		<p class="muted">
 			<small>Article published on {{article.dateCreation |
 				date:'MM/dd/yyyy'}} by <a ng-click="goToArticleAuteur(article)">{{article.auteur.nom}}
@@ -12,7 +12,6 @@
 		</p>
 		<legend></legend>
 		<article ng-bind-html-unsafe="article.article"></article>
-
 		<br />
 		<legend></legend>
 		<h4>Others articles:</h4>
@@ -26,6 +25,9 @@
 					{{commentaire.dateCreation | date:'short'}} : </small>
 			</p>
 			<p>{{commentaire.commentaire}}</p>
+			<a ng-show="cookieStore.get('USER').admin"
+				ng-click="deleteComments(commentaire)">delete comment <i
+				class="icon-trash"></i></a>
 
 		</div>
 		<legend></legend>

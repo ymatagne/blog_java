@@ -1,12 +1,14 @@
 <div id="articleList">
-
 	<ul>
-		<article class="well" ng-repeat="article in articles">
+		<article class="well"
+			ng-repeat="article in articles | filter: sharedProperties.getProperty()">
+
 			<h4>
-				<a href="#/article/{{article.id}}">{{article.titre}}</a> <a
+				<a href="#/article/{{article.id}}"
+					ng-bind-html-unsafe="article.titre"></a> <a
 					ng-show="cookieStore.get('USER').admin"
-					href="#/article/update/{{article.id}}"><i class="icon-edit"></i></a> <a
-					ng-show="cookieStore.get('USER').admin"
+					href="#/article/update/{{article.id}}"><i class="icon-edit"></i></a>
+				<a ng-show="cookieStore.get('USER').admin"
 					ng-click="deleteArticle(article)"><i class="icon-trash"></i></a>
 			</h4>
 
@@ -19,7 +21,7 @@
 				<br /> <small>Comments: {{article.commentaires.length}}</small>
 			</p>
 			<legend></legend>
-			<p>{{article.resume}}</p>
+			<p ng-bind-html-unsafe="article.resume"></p>
 			<p>
 				<a href="#/article/{{article.id}}">Lire la suite de l'article >></a>
 			</p>

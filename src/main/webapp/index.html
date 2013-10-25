@@ -50,12 +50,11 @@
 							class="deuxieme">.</b><b class="troisieme">dropCategory</b><b
 							class="quatrieme">()</b></a></li>
 					<li class="divider-vertical"></li>
-					<div class='container-fluid' ng-controller="TypeaheadCtrl">
+					<div class='container-fluid'>
 						<b class="deuxieme">.</b><b class="troisieme">search</b><b
-							class="quatrieme">(</b> <input id="searchText" type="text"
-							ng-model="selected"
-							typeahead="state for state in states | filter:$viewValue"><b
-							class="quatrieme_search">)</b>
+							class="quatrieme">(</b> <input class="span2" id="searchText" type="text"
+							ng-model="searchModel" ng-change="searchChange(searchModel)"></input>
+						<b class="quatrieme_search">)</b>
 					</div>
 				</ul>
 			</div>
@@ -81,8 +80,7 @@
 					<p>Hoping that this blog will be useful, I hope you enjoy
 						reading!</p>
 				</div>
-				<div ng-include=" 'partials/authentification/login.html' ">					
-				</div>
+				<div ng-include=" 'partials/authentification/login.html' "></div>
 			</div>
 			<div class="span9">
 				<div class="container-fluid" ng-view></div>
@@ -122,7 +120,7 @@
 	<script src="js/controllers.js"></script>
 	<script src="js/filters.js"></script>
 	<script src="js/directives.js"></script>
-	
+
 	<script>
 		var _gaq = [ [ '_setAccount', 'UA-XXXXX-X' ], [ '_trackPageview' ] ];
 		(function(d, t) {

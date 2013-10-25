@@ -8,8 +8,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.junit.Assert;
@@ -28,7 +26,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import fr.luya.blog.document.Article;
 import fr.luya.blog.document.Auteur;
 import fr.luya.blog.document.Categorie;
-import fr.luya.blog.document.Commentaire;
 import fr.luya.blog.service.ArticleService;
 import fr.luya.blog.utils.IntegrationTestUtil;
 import fr.luya.blog.utils.MockBuilder;
@@ -68,6 +65,8 @@ public class BlogControllerTest {
         articleTmp.setCategorie(categorie);
         articleTmp.setResume("resume");
         articleTmp.setValide(true);
+        // articleTmp.setCommentaires(null);
+        // articleTmp.setDateCreation(new Date());
         final ArticleService articleService = mock(ArticleService.class);
         when(articleService.findAllArticles()).thenReturn(articles);
         when(articleService.findById("1")).thenReturn(articles.get(1));
@@ -147,9 +146,8 @@ public class BlogControllerTest {
         mockMvc.perform(
                 put("/article").contentType(IntegrationTestUtil.APPLICATION_JSON_UTF8).content(
                         IntegrationTestUtil.convertObjectToJsonBytes(articleTmp))).andExpect(status().isOk())
-                .andExpect(content().contentType(IntegrationTestUtil.APPLICATION_JSON_UTF8))
-                .andExpect(content().bytes(IntegrationTestUtil.convertObjectToJsonBytes(articleTmp)));
-        Assert.assertEquals(articles.size(), 4);
+                .andExpect(content().contentType(IntegrationTestUtil.APPLICATION_JSON_UTF8));
+        Assert.assertEquals(articles.size(), 3);
 
     }
 

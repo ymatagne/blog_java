@@ -24,6 +24,17 @@ angular.module('blogApp.services', [ 'ngResource' ]).factory('Article',
 			method : 'PUT'
 		}
 	});
+}).service('SharedProperties', function() {
+	var property = 'SearchText';
+
+	return {
+		getProperty : function() {
+			return property;
+		},
+		setProperty : function(value) {
+			property = value;
+		}
+	};
 }).factory('myHttpInterceptor', function($q) {
 	return function(promise) {
 		return promise.then(function(response) {

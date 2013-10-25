@@ -1,9 +1,10 @@
 'use strict';
 
 function ArticleListController($scope, $location, $cookieStore, $filter,
-		Article) {
+		SharedProperties, Article) {
 	$scope.articles = null;
 	$scope.cookieStore = $cookieStore;
+	$scope.sharedProperties = SharedProperties;
 	if ($scope.selectedCategorie != null) {
 		$scope.articlesTmp = Article
 				.query(function() {
@@ -34,8 +35,9 @@ function ArticleListController($scope, $location, $cookieStore, $filter,
 }
 
 function ArticleDetailController($scope, $routeParams, $location,
-		$anchorScroll, Article, Commentaire) {
+		$anchorScroll, $cookieStore, Article, Commentaire) {
 	$scope.commentaire = new Commentaire();
+	$scope.cookieStore = $cookieStore;
 	$scope.article = Article.get({
 		id : $routeParams.id
 	}, function(article) {
@@ -43,9 +45,15 @@ function ArticleDetailController($scope, $routeParams, $location,
 	$scope.goToComments = function() {
 		$location.hash('titleComment');
 		$anchorScroll();
-	}
+	};
 	$scope.gotoArticleListPage = function() {
 		$location.path("/");
+	};
+	$scope.deleteComments = function(commentaire) {
+		var index = $scope.article.commentaires.indexOf(commentaire);
+		$scope.article.commentaires.splice(index, 1);
+		Commentaire.save($scope.article, function() {
+		});
 	};
 	$scope.submitForm = function() {
 		$scope.commentaire.dateCreation = new Date();
@@ -124,8 +132,12 @@ function CategorieNewController($scope, $location, Categorie) {
 	};
 }
 
-function MenuCtrl($scope, $location, Article, Categorie) {
+function MenuCtrl($scope, $location, SharedProperties, Article, Categorie) {
 	$scope.categories = Categorie.query();
+	SharedProperties.setProperty("");
+	$scope.searchChange = function(searchModel) {
+		SharedProperties.setProperty(searchModel);
+	};
 	$scope.selectCategorie = function(categorie) {
 		$scope.selectedCategorie = categorie;
 		$location.path('/');
@@ -236,19 +248,4 @@ function AuteurNewController($scope, $location, Auteur) {
 	$scope.gotoAuteurListPage = function() {
 		$location.path("/");
 	};
-}
-
-function TypeaheadCtrl($scope) {
-
-	$scope.selected = undefined;
-	$scope.states = [ 'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
-			'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia',
-			'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas',
-			'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts',
-			'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana',
-			'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico',
-			'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma',
-			'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina',
-			'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
-			'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming' ];
 }
