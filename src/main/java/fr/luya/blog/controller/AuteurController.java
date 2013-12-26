@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import fr.luya.blog.document.Auteur;
+import fr.luya.blog.exceptions.DuplicateUserEmail;
 import fr.luya.blog.service.AuteurService;
 
 /**
@@ -49,8 +50,22 @@ public class AuteurController {
      * 
      * @param id de l'auteur à récuperer
      * @return l'auteur
+     * @throws Exception
      */
-    @RequestMapping(value = "/auteur/{id}", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/auteurByEmail/{email:.+}", method = RequestMethod.GET, produces = "application/json")
+    @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
+    public @ResponseBody
+    String getByEmail(@PathVariable final String email) {
+        return Boolean.toString(service.findByEmail(email) != null);
+    }
+
+    /**
+     * Permet de récueprer un auteur via son id
+     * 
+     * @param id de l'auteur à récuperer
+     * @return l'auteur
+     */
+    @RequestMapping(value = "/auteur/{id:.+}", headers = "Accept=*/*", method = RequestMethod.GET, produces = "application/json")
     @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
     public @ResponseBody
     Auteur getById(@PathVariable final String id) {
@@ -62,12 +77,18 @@ public class AuteurController {
      * 
      * @param auteur à creer
      * @return l'auteur créer avec son id
+     * @throws DuplicateUserEmail email deja present en base
      */
     @RequestMapping(value = "/auteur", method = RequestMethod.PUT)
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ResponseBody
     public Auteur create(@RequestBody final Auteur auteur) {
-        service.create(auteur);
+        try {
+            service.saveOrUpdate(auteur);
+        } catch (final DuplicateUserEmail e) {
+            auteur.setEmail(null);
+            auteur.setId(null);
+        }
         return auteur;
 
     }

@@ -12,16 +12,33 @@ function ArticleListController($scope, $location, $cookieStore, $filter,
 							(
 									$scope.articlesTmp,
 									function(x) {
+										var isOK = false;
 										if (x.categorie != null) {
-											return x.categorie.id == $scope.selectedCategorie.id;
+											isOK = x.categorie.id == $scope.selectedCategorie.id;
 										}
-										return false;
+										return isOK;
 									});
 				});
 	} else {
 		$scope.articles = Article.query();
 	}
-
+	$scope.filterFunction = function(dataItem) {
+		if ($scope.cookieStore.get('USER') != null
+				&& $scope.cookieStore.get('USER').admin) {
+			if ($scope.invalidAdmin == true) {
+				return dataItem.valide == false;
+			}
+			return true;
+		} else {
+			return dataItem.valide == true;
+		}
+	};
+	$scope.valid = function(article, valid) {
+		article.valide = valid;
+		Article.save(article, function(articles) {
+			$location.path('/');
+		});
+	};
 	$scope.gotoArticleNewPage = function() {
 		$location.path("/article/new");
 	};
@@ -31,6 +48,9 @@ function ArticleListController($scope, $location, $cookieStore, $filter,
 		}, function() {
 			$location.path('/');
 		});
+	};
+	$scope.goToArticleAuteur=function(article){
+		$location.path('/auteur/'+article.auteur.id);
 	};
 }
 
@@ -42,6 +62,7 @@ function ArticleDetailController($scope, $routeParams, $location,
 		id : $routeParams.id
 	}, function(article) {
 	});
+	$scope.otherArticles = Article.query();
 	$scope.goToComments = function() {
 		$location.hash('titleComment');
 		$anchorScroll();
@@ -62,6 +83,9 @@ function ArticleDetailController($scope, $routeParams, $location,
 			$scope.commentaire = new Commentaire();
 		});
 	};
+	$scope.goToArticleAuteur=function(article){
+		$location.path('/auteur/'+article.auteur.id);
+	};
 }
 
 function ArticleNewController($scope, $location, $cookieStore, Article,
@@ -77,6 +101,7 @@ function ArticleNewController($scope, $location, $cookieStore, Article,
 		$location.path("/");
 	};
 }
+
 function ArticleUpdateController($scope, $location, $routeParams, $timeout,
 		Article) {
 	$scope.article = new Article();
@@ -97,6 +122,7 @@ function ArticleUpdateController($scope, $location, $routeParams, $timeout,
 		$location.path("/");
 	};
 }
+
 function CategorieListController($scope, $location, Categorie) {
 	$scope.categories = Categorie.query();
 	$scope.gotoCategorieNewPage = function() {
@@ -132,14 +158,42 @@ function CategorieNewController($scope, $location, Categorie) {
 	};
 }
 
+function CategorieUpdateController($scope, $location, $routeParams, $timeout,
+		Categorie) {
+	$scope.categorie = new Categorie();
+	Categorie.get({
+		id : $routeParams.id
+	}, function(categorie) {
+		$scope.categorie = categorie;
+	});
+	$scope.submit = function() {
+		Categorie.save($scope.categorie, function(categories) {
+			$location.path("/categorie/list");
+		});
+	};
+	$scope.gotoCategorieListPage = function() {
+		$location.path("/categorie/list");
+	};
+}
+
 function MenuCtrl($scope, $location, SharedProperties, Article, Categorie) {
+	$scope.invalidAdmin = null;
 	$scope.categories = Categorie.query();
 	SharedProperties.setProperty("");
 	$scope.searchChange = function(searchModel) {
 		SharedProperties.setProperty(searchModel);
 	};
+	$scope.gotoListArticle = function() {
+		$scope.invalidAdmin = false;
+		$location.path('/');
+	};
 	$scope.selectCategorie = function(categorie) {
 		$scope.selectedCategorie = categorie;
+		$location.path('/');
+	};
+	$scope.gotoListInvalidArticle = function() {
+		$scope.articles = Article.query();
+		$scope.invalidAdmin = true;
 		$location.path('/');
 	};
 	$scope.dropCategorie = function() {
@@ -171,6 +225,7 @@ function AuteurControlleur($scope, $http, $cookieStore, $location, Auteur) {
 		$location.path("/");
 	};
 	$scope.login = function() {
+
 		var data = "j_username=" + $scope.auteur.email + "&j_password="
 				+ $scope.auteur.password + "&submit=Login";
 		$http.post('j_spring_security_check', data, {
@@ -179,12 +234,13 @@ function AuteurControlleur($scope, $http, $cookieStore, $location, Auteur) {
 			}
 		}).success(function(data, status, headers, config) {
 			$scope.auteur = Auteur.get({
-				id : $scope.auteur.email
+				id : data
 			}, function(auteur) {
 				$cookieStore.put('USER', auteur);
+				jQuery('#loging').hide();
+				jQuery('#menuAdmin').show();
 			});
-			jQuery('#loging').hide();
-			jQuery('#menuAdmin').show();
+
 		}).error(function(data, status, headers, config) {
 			$scope.auteur = new Auteur();
 			$cookieStore.put('USER', auteur.email);
@@ -223,7 +279,8 @@ function AuteurListController($scope, $location, $filter, Auteur) {
 		auteur.$delete({
 			'id' : auteur.id
 		}, function() {
-			$location.path('/');
+			$scope.auteurs = Auteur.query();
+			$location.path("/auteur/list");
 		});
 	};
 }
@@ -238,14 +295,36 @@ function AuteurDetailController($scope, $routeParams, $location, Auteur) {
 	};
 }
 
-function AuteurNewController($scope, $location, Auteur) {
+function AuteurNewController($http, $scope, $location, Auteur) {
 	$scope.auteur = new Auteur();
+	$scope.erreur=false;
 	$scope.submit = function() {
-		Auteur.save($scope.auteur, function(auteurs) {
-			$location.path('/');
+
+		Auteur.save($scope.auteur, function(auteur) {
+			if (auteur.id == null && auteur.email == null) {
+				$scope.erreur=true;
+			} else {
+				$location.path("/auteur/list");
+			}
 		});
 	};
 	$scope.gotoAuteurListPage = function() {
-		$location.path("/");
+		$location.path("/auteur/list");
+	};
+}
+
+function AuteurUpdateController($scope, $location, $routeParams, Auteur) {
+	$scope.auteur = Auteur.get({
+		id : $routeParams.id
+	}, function(auteur) {
+		$scope.auteur = auteur;
+	});
+	$scope.submit = function() {
+		Auteur.save($scope.auteur, function(auteurs) {
+			$location.path("/auteur/list");
+		});
+	};
+	$scope.gotoAuteurListPage = function() {
+		$location.path("/auteur/list");
 	};
 }

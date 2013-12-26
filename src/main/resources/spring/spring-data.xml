@@ -28,6 +28,9 @@
         <constructor-arg name="mongo" ref="mongo"/>
         <constructor-arg name="databaseName" value="${mongodb.dbname}"/>
         <constructor-arg name="userCredentials" ref="mongoCredentials"/>
+         <property name="writeConcern">
+            <util:constant static-field="com.mongodb.WriteConcern.SAFE" ></util:constant>
+        </property>
     </bean>
 
     <bean id="mongoCredentials" class="org.springframework.data.authentication.UserCredentials">

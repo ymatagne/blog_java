@@ -43,7 +43,7 @@ public class LocalAuthenticationProvider extends AbstractUserDetailsAuthenticati
             throw new BadCredentialsException("Please enter password");
         }
 
-        final Auteur auteur = auteurService.findById(username);
+        final Auteur auteur = auteurService.findByEmail(username);
         if (auteur == null) {
             logger.warn("Username {} : username not found", username);
             throw new BadCredentialsException("Invalid Username");
@@ -59,7 +59,7 @@ public class LocalAuthenticationProvider extends AbstractUserDetailsAuthenticati
         }
         auths.add(new GrantedAuthorityImpl("ROLE_USER"));
 
-        return new User(username, password, true, true, true, true, auths);
+        return new User(auteur.getId(), "", true, true, true, true, auths);
     }
 
 }

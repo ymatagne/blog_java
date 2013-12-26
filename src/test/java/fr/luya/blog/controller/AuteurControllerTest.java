@@ -24,6 +24,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import fr.luya.blog.document.Auteur;
+import fr.luya.blog.exceptions.DuplicateUserEmail;
 import fr.luya.blog.service.AuteurService;
 import fr.luya.blog.utils.IntegrationTestUtil;
 import fr.luya.blog.utils.MockBuilder;
@@ -65,13 +66,18 @@ public class AuteurControllerTest {
             }
         });
 
-        when(auteurService.create(auteurTmp)).thenAnswer(new Answer<Boolean>() {
-            @Override
-            public Boolean answer(InvocationOnMock invocation) throws Throwable {
-                auteurs.add(auteurTmp);
-                return true;
-            }
-        });
+        try {
+            when(auteurService.saveOrUpdate(auteurTmp)).thenAnswer(new Answer<Boolean>() {
+                @Override
+                public Boolean answer(InvocationOnMock invocation) throws Throwable {
+                    auteurs.add(auteurTmp);
+                    return true;
+                }
+            });
+        } catch (DuplicateUserEmail e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
         auteurControlleur = new AuteurController();
         ReflectionTestUtils.setField(auteurControlleur, "service", auteurService);

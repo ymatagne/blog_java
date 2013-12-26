@@ -1,1 +1,1 @@
-mongod --dbpath ./db/ & 
+mongod --dbpath ./db/ --setParameter=textSearchEnabled=true & 

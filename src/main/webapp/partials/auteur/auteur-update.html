@@ -2,12 +2,10 @@
 
 	<form name="auteur" class="form-horizontal">
 		<fieldset>
-			<h4>Create a new author</h4>
+			<h4>Modify author</h4>
 			<accordion close-others="false"> <accordion-group
 				heading="Email of your author" is-open="true"> <input
-				id="auteur.email" type="text" ng-model="auteur.email"
-				placeholder="Enter your mail..." required /> <span ng-show="erreur"
-				class="label label-important">Email exist !</span> </accordion-group> <accordion-group
+				disabled id="auteur.email" type="text" ng-model="auteur.email" /> </accordion-group> <accordion-group
 				heading="Name of your author" is-open="true"> <input
 				id="auteur.nom" type="text" ng-model="auteur.nom"
 				placeholder="Enter your name..." required /> </accordion-group> <accordion-group

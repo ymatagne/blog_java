@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.luya.blog.document.Article;
-import fr.luya.blog.document.Commentaire;
 import fr.luya.blog.repository.ArticleRepository;
 
 /**
@@ -53,7 +52,7 @@ public class ArticleService {
         existingArticle.setCommentaires(article.getCommentaires());
         existingArticle.setResume(article.getResume());
         existingArticle.setArticle(article.getArticle());
-
+        existingArticle.setValide(article.getValide());
         Article saved = repository.save(existingArticle);
         if (saved == null)
             return false;

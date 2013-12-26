@@ -1,6 +1,7 @@
 package fr.luya.blog.document;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
@@ -12,6 +13,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Auteur {
 
     @Id
+    private String id;
+
+    @Indexed(unique=true)
     private String email;
 
     private String nom;
@@ -154,4 +158,17 @@ public class Auteur {
         return true;
     }
 
+    /**
+     * @return the id
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
 }

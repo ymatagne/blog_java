@@ -10,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import fr.luya.blog.document.Auteur;
+import fr.luya.blog.exceptions.DuplicateUserEmail;
 import fr.luya.blog.repository.AuteurRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -61,21 +62,12 @@ public class AuteurServiceTest {
         auteur.setEmail("email7");
         auteur.setPassword("pass7");
         auteur.setPrenom("prenom7");
-        Assert.assertTrue(service.create(auteur));
-    }
-
-    /**
-     * Test de la mise a jour d'un auteur
-     */
-    @Test
-    public void shouldUpdateAuteur() {
-        final Auteur auteur = service.findById("email1");
-        Assert.assertEquals("nom1", auteur.getNom());
-        auteur.setNom("toto");
-        service.update(auteur);
-        final Auteur auteurUpdated = service.findById("email1");
-        Assert.assertEquals("toto", auteurUpdated.getNom());
-
+        try {
+            service.saveOrUpdate(auteur);
+        } catch (DuplicateUserEmail e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     /**

@@ -1,1 +1,1 @@
-web: java -cp target/classes:"target/dependency/*" root.StartWebApp
+web: target/universal/stage/bin/natinf -Dhttp.port=$PORT

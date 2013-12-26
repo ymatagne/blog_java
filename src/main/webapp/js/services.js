@@ -15,7 +15,11 @@ angular.module('blogApp.services', [ 'ngResource' ]).factory('Article',
 }).factory('Auteur', function($resource) {
 	return $resource('rest/auteur/:id', {}, {
 		'save' : {
-			method : 'PUT'
+			method : 'PUT',
+			headers : {
+				'Content-Type' : 'application/json; charset=utf-8',
+				'Accept' : 'application/json, text/javascript, /;'
+			}
 		}
 	});
 }).factory('Commentaire', function($resource) {
@@ -35,14 +39,21 @@ angular.module('blogApp.services', [ 'ngResource' ]).factory('Article',
 			property = value;
 		}
 	};
-}).factory('myHttpInterceptor', function($q) {
-	return function(promise) {
-		return promise.then(function(response) {
-			return response;
-		}, function(response) {
-			window.location = '/blog/#/404';
-		});
-	};
-}).config(function($httpProvider) {
+}).factory(
+		'myHttpInterceptor',
+		function($q) {
+			return function(promise) {
+				return promise.then(function(response) {
+					return response;
+				}, function(response) {
+					if (response.config.url == "rest/auteur"
+							&& response.config.method == "PUT") {
+
+					} else {
+						window.location = '/blog/#/404';
+					}
+				});
+			};
+		}).config(function($httpProvider) {
 	$httpProvider.responseInterceptors.push('myHttpInterceptor');
 });

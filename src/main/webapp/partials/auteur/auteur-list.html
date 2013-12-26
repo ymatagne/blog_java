@@ -1,14 +1,18 @@
 <div id="auteurList">
+	<h4>Authors:</h4>
 
 	<ul>
-		<div ng-repeat="auteur in auteurs">
-			<h4>
-				<a href="#/auteur/{{auteur.email}}">{{auteur.email}}</a>
-			</h4>			
-		</div>
+		<article class="well" ng-repeat="auteur in auteurs">
+			<p>{{auteur.email}}</p>
+			<a href="#/auteur/update/{{auteur.id}}"><i class="icon-edit"></i>
+				edit</a><a ng-click="deleteAuteur(auteur)"><i class="icon-trash"></i>
+				delete</a>
+		</article>
 
 	</ul>
-
-
+	<button class="btn btn-primary" ng-click="gotoAuteurNewPage()">New
+		authors</button>
+	<br />
+	<br />
 
 </div>

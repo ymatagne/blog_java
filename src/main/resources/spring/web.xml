@@ -33,9 +33,6 @@
 
     <mvc:annotation-driven />
 
-    <!-- <mvc:resources mapping="/resources/**" location="/resources/" /> -->
-
-
     <!-- Imports logging configuration -->
 
     <import resource="aop-context.xml" />

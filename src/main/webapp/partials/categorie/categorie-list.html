@@ -1,15 +1,17 @@
 <div id="categorieList">
-
-	<h2>Liste des categories</h2>
+	<h4>Categories:</h4>
 
 	<ul>
-		<li ng-repeat="categorie in categories"><a
-			href="#/categorie/{{categorie.id}}"><span class="categorieTitre">{{categorie.nom}}</span></a>
-			<button class="btn" ng-click="deleteCategorie(categorie)">X</button></li>
+		<article class="well" ng-repeat="categorie in categories">
+			<p>{{categorie.nom}}</p>
+			<a href="#/categorie/update/{{categorie.id}}"><i
+				class="icon-edit"></i> edit</a> <a ng-click="deleteCategorie(categorie)"><i
+				class="icon-trash"></i> delete</a>
+		</article>
 	</ul>
 
-	<hr />
 
-	<button ng-click="gotoCategorieNewPage()" class="btn">Ajouter</button>
+	<button class="btn btn-primary" ng-click="gotoCategorieNewPage()">New
+		category</button>
 
 </div>

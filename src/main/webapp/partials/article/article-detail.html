@@ -15,7 +15,12 @@
 		<br />
 		<legend></legend>
 		<h4>Others articles:</h4>
-
+		<div
+			ng-repeat="otherArticle in otherArticles |filter:{categorie.id:article.categorie.id,id:'!'+article.id,valide:true}">
+			<a href="#/article/{{otherArticle.id}}">
+				{{otherArticle.dateCreation | date:'MM/dd/yyyy'}} -
+				{{otherArticle.titre}}</a>
+		</div>
 		<br />
 		<legend></legend>
 		<h4 id="titleComment">Comments ({{article.commentaires.length}})</h4>

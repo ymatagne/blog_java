@@ -9,32 +9,29 @@
 				heading="Title of your article" is-open="true"> <input
 				id="article.titre" type="text" ng-model="article.titre"
 				placeholder="Enter your title..." required /> </accordion-group> <accordion-group
-				heading="Resume in a few lines"> <textarea  class="field span12"
-				id="article.resume" rows="4" ng-model="article.resume"
-				placeholder="Enter resume..."></textarea> </accordion-group> <accordion-group
-				heading="Write your article"> <textarea
+				heading="Resume in a few lines"> <textarea
+				class="field span12" id="article.resume" rows="4"
+				ng-model="article.resume" placeholder="Enter resume..."></textarea>
+			</accordion-group> <accordion-group heading="Write your article"> <textarea
 				id="tinymce" ui-tinymce ng-model="article.article"
 				placeholder="Enter article..."></textarea> </accordion-group> <accordion-group
 				heading="Categorize your article" required> <label
 				for="article.categorie">Choose your category : </label> <select
 				id="article.categorie" ng-model="article.categorie"
 				ng-options="categorie as categorie.nom for categorie in categories"
-				required></select>
-</div>
-</accordion-group>
-</accordion>
+				required></select> </accordion-group> </accordion>
 
 
 
 
 
 
-<br />
-<button class="btn" ng-click="gotoArticleListPage()">Back</button>
-&nbsp;
-<button class="btn btn-primary" ng-click="submit()"
-	ng-disabled="article.$invalid">Save</button>
-</fieldset>
-</form>
+			<br />
+			<button class="btn" ng-click="gotoArticleListPage()">Back</button>
+			&nbsp;
+			<button class="btn btn-primary" ng-click="submit()"
+				ng-disabled="article.$invalid">Save</button>
+		</fieldset>
+	</form>
 
 </div>

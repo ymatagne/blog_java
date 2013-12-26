@@ -66,7 +66,11 @@ public class CategorieController {
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @ResponseBody
     public Categorie create(@RequestBody final Categorie categorie) {
-        service.create(categorie);
+        if (categorie.getId() != null) {
+            service.update(categorie);
+        } else {
+            service.create(categorie);
+        }
         return categorie;
 
     }

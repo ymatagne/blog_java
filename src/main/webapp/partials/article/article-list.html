@@ -1,17 +1,20 @@
 <div id="articleList">
 	<ul>
 		<article class="well"
-			ng-repeat="article in articles | filter: sharedProperties.getProperty()">
+			ng-repeat="article in articles | filter: sharedProperties.getProperty()|filter:filterFunction">
 
 			<h4>
 				<a href="#/article/{{article.id}}"
-					ng-bind-html-unsafe="article.titre"></a> <a
-					ng-show="cookieStore.get('USER').admin"
-					href="#/article/update/{{article.id}}"><i class="icon-edit"></i></a>
-				<a ng-show="cookieStore.get('USER').admin"
-					ng-click="deleteArticle(article)"><i class="icon-trash"></i></a>
+					ng-bind-html-unsafe="article.titre"></a>
 			</h4>
-
+			<a ng-show="cookieStore.get('USER').admin"
+				href="#/article/update/{{article.id}}"><i class="icon-edit"></i>
+				edit</a> <a ng-show="cookieStore.get('USER').admin"
+				ng-click="deleteArticle(article)"><i class="icon-trash"></i>
+				delete</a> <a ng-show="cookieStore.get('USER').admin && article.valide"
+				ng-click="valid(article,false)"><i class="icon-remove"></i>
+				invalid</a><a ng-show="cookieStore.get('USER').admin && !article.valide"
+				ng-click="valid(article,true)"><i class=" icon-ok"></i> valid</a>
 			<p class="muted">
 				<small> Article published on {{article.dateCreation |
 					date:'MM/dd/yyyy'}} by <a ng-click="goToArticleAuteur(article)">{{article.auteur.nom}}
@@ -23,7 +26,7 @@
 			<legend></legend>
 			<p ng-bind-html-unsafe="article.resume"></p>
 			<p>
-				<a href="#/article/{{article.id}}">Lire la suite de l'article >></a>
+				<a href="#/article/{{article.id}}">Read more >></a>
 			</p>
 		</article>
 

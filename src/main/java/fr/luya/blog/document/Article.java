@@ -27,7 +27,6 @@ public class Article {
 
     private Date dateCreation;
 
-//    @DBRef
     private List<Commentaire> commentaires;
 
     @DBRef
@@ -157,7 +156,7 @@ public class Article {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((article == null) ? 0 : article.hashCode());
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
         result = prime * result + ((resume == null) ? 0 : resume.hashCode());
         result = prime * result + ((titre == null) ? 0 : titre.hashCode());
         return result;
@@ -187,11 +186,11 @@ public class Article {
             return false;
         }
 
-        if (id == null) {
-            if (other.id != null) {
+        if (getId() == null) {
+            if (other.getId() != null) {
                 return false;
             }
-        } else if (!id.equals(other.id)) {
+        } else if (!getId().equals(other.getId())) {
             return false;
         }
         if (resume == null) {

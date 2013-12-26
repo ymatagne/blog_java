@@ -71,6 +71,7 @@ public class ArticleController {
         if (article.getId() == null) {
             article.setDateCreation(new Date());
             article.setCommentaires(new ArrayList<Commentaire>());
+            article.setValide(false);
             service.create(article);
         } else {
             service.update(article);
