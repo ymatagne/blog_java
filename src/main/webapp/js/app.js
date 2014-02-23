@@ -2,8 +2,8 @@
 // Declare module and path for application
 angular.module(
 		'blogApp',
-		[ 'ngCookies', 'ui.tinymce', 'ui.bootstrap', 'blogApp.filters',
-				'blogApp.services', 'blogApp.directives' ]).config(
+		[ 'ngRoute','ngCookies', 'ui.tinymce', 'ui.bootstrap', 'blogApp.filters',
+				'blogApp.services', 'blogApp.directives','ngSanitize' ]).config(
 		[ '$routeProvider', function($routeProvider) {
 			$routeProvider.when('/article/list', {
 				templateUrl : 'partials/article/article-list.html',
@@ -58,11 +58,9 @@ angular.module(
 				controller : AuteurUpdateController,
 				role : 'ADMIN'
 			})
-
 			.when('/404', {
 				templateUrl : 'partials/authentification/erreur.html'
 			})
-
 			.otherwise({
 				redirectTo : '/article/list'
 			});

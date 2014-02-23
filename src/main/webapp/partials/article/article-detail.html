@@ -1,6 +1,6 @@
 <div id="articleDetail">
 	<div class="form-horizontal">
-		<h4 ng-bind-html-unsafe="article.titre"></h4>
+		<h4 ng-bind-html="article.titre"></h4>
 		<p class="muted">
 			<small>Article published on {{article.dateCreation |
 				date:'MM/dd/yyyy'}} by <a ng-click="goToArticleAuteur(article)">{{article.auteur.nom}}
@@ -11,7 +11,7 @@
 			</small>
 		</p>
 		<legend></legend>
-		<article ng-bind-html-unsafe="article.article"></article>
+		<article ng-bind-html="article.article"></article>
 		<br />
 		<legend></legend>
 		<h4>Others articles:</h4>

@@ -1,0 +1,35 @@
+<header class="navbar navbar-fixed-top blog-header" role="banner">
+	<div class="container">
+		<div class="navbar-header">
+			<a href="#" ng-click="uploadArticles()" class="navbar-brand">me.getBlog({{selectedCategorie.nom}})</a>
+		</div>
+		<nav class="collapse navbar-collapse bs-navbar-collapse"
+			role="navigation">
+			<ul class="nav navbar-nav">
+				<li class="open">
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					role="button"> <b class="deuxieme">.</b><b class="troisieme">addCategory</b><b
+						class="quatrieme">()</b><b class="caret"></b>
+				</a>
+					<ul class="dropdown-menu">
+						<li ng-repeat="categorie in categories"><a
+							ng-click="selectCategorie(categorie)">{{categorie.nom}}</a></li>
+					</ul></li>
+				<li class="divider-vertical"></li>
+				<li><a class="dropCategorie" ng-click="dropCategorie()"> <b
+						class="deuxieme">.</b><b class="troisieme">dropCategory</b><b
+						class="quatrieme">()</b></a></li>
+				<li class="divider-vertical"></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<form class="navbar-form navbar-left" role="search">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Rechercher"
+							ng-model="searchModel" ng-change="searchChange(searchModel)">
+					</div>
+				</form>
+			</ul>
+		</nav>
+	</div>
+	<!-- 	</div> -->
+</header>

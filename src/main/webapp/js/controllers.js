@@ -2,7 +2,6 @@
 
 function ArticleListController($scope, $location, $cookieStore, $filter,
 		SharedProperties, Article) {
-	$scope.articles = null;
 	$scope.cookieStore = $cookieStore;
 	$scope.sharedProperties = SharedProperties;
 	if ($scope.selectedCategorie != null) {

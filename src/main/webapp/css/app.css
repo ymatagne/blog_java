@@ -1,25 +1,33 @@
 /* app css stylesheet */
 /*redefinition de classe bootstrap*/
-.footer {
+
+body {
+	position: relative;
+	padding-top: 70px;
+}
+
+.blog-header {
+	background-color: #f5f5f5;
+	border: 1px solid #d4d4d4;
+	color: #777;
+}
+
+.blog-edito {
+	position: fixed;
+	top: 70px;
+	width: 280px;
+}
+.container{
+	width:auto;
+}
+.blog-footer {
 	background-color: #f5f5f5;
 	border: 1px solid #d4d4d4;
 	color: #777;
 	text-align: center;
+	margin-top:200px;
 }
 
-.header_place {
-	margin: 50px;
-}
-
-.title {
-	font-size: 31.5px;
-	margin-top: 10px;
-	cursor: default;
-	font-family: "Times" !important;
-	float: left;
-	display: block;
-	text-decoration: none;
-}
 
 .span2>p {
 	text-align: justify;
@@ -27,7 +35,6 @@
 }
 
 .presentation {
-	font-size: 16.5px;
 	margin: 0;
 	color: #777;
 }
@@ -73,10 +80,9 @@
 	margin-right: -7px;
 }
 
-.container .nav {
-	float: right;
-}
-
+/* .container .nav { */
+/* 	float: right; */
+/* } */
 .dropCategorie {
 	cursor: pointer;
 }
