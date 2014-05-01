@@ -18,11 +18,11 @@ import fr.luya.blog.document.Auteur;
 
 /**
  * Test du répository des auteurs
- * 
+ *
  * @author luya
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "file:src/main/resources/spring/web.xml" })
+@ContextConfiguration(locations = {"file:src/main/resources/spring/web.xml"})
 public class AuteurRepositoryTest {
 
     @Autowired
@@ -98,12 +98,7 @@ public class AuteurRepositoryTest {
      */
     @Test
     public void shouldDeleteAuteur() {
-        final Auteur auteur = new Auteur();
-        auteur.setNom("nom1");
-        auteur.setAdmin(true);
-        auteur.setEmail("email1");
-        auteur.setPassword("pass1");
-        auteur.setPrenom("prenom1");
+        final Auteur auteur = repository.findByEmail("email1");
         repository.delete(auteur);
 
         Assert.assertEquals("le nombre d auteur ne correspond pas", 5, repository.findAll().size());
@@ -115,10 +110,9 @@ public class AuteurRepositoryTest {
      */
     @Test
     public void shouldUpdateAuteur() {
-        final Auteur auteur = new Auteur();
+        final Auteur auteur = repository.findByEmail("email1");
         auteur.setNom("nom8");
         auteur.setAdmin(true);
-        auteur.setEmail("email1");
         auteur.setPassword("pass8");
         auteur.setPrenom("prenom8");
         repository.save(auteur);

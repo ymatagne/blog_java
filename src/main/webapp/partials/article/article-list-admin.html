@@ -1,0 +1,41 @@
+<div id="articleListAdmin">
+    <div class="col-md-10" role="main">
+
+        <p class="lead">Administration des articles</p>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Titre de l'article</th>
+                <th>Visible</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="article in articles">
+                <td>{{$index}}</td>
+                <td>{{article.titre}}</td>
+                <td>{{article.valide==true?"Oui":"Non"}}</td>
+                <td><a href="#/article/update/{{article.id}}"
+                       ng-show="user.admin==true || article.auteur.email==user.email"><span
+                        class="glyphicon glyphicon-pencil"></span>
+                </a> <a href="" ng-click="deleteArticle(article)"
+                        ng-show="user.admin==true || article.auteur.email==user.email"><span
+                        class="glyphicon glyphicon-trash"></span></a>
+                    <a href="" ng-show="article.valide && user.admin==true"
+                       ng-click="valid(article,false)"><span class="glyphicon glyphicon-remove-circle"></span></a>
+
+                    <a href="" ng-show="!article.valide && user.admin==true"
+                       ng-click="valid(article,true)"><span class="glyphicon glyphicon-ok-circle"></span></a>
+                </td>
+
+
+            </tr>
+            </tbody>
+        </table>
+
+        <button class="btn btn-primary" ng-click="gotoArticleNewPage()">Créer
+        </button>
+    </div>
+</div>

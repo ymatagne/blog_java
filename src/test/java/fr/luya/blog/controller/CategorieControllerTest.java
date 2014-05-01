@@ -10,6 +10,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.List;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -48,7 +49,6 @@ public class CategorieControllerTest {
         categories = MockBuilder.mockCategories();
         categorieTmp = new Categorie();
         categorieTmp.setNom("Titre5");
-        categorieTmp.setId("5");
 
         final CategorieService categorieService = mock(CategorieService.class);
         when(categorieService.findAllCategories()).thenReturn(categories);
@@ -87,7 +87,7 @@ public class CategorieControllerTest {
     public void checkGetAllCategories() throws Exception {
         mockMvc.perform(get("/categorie")).andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(content().bytes(IntegrationTestUtil.convertObjectToJsonBytes(categories)));
+                .andExpect(content().bytes(IntegrationTestUtil.convertObjectToJsonBytes(categories, JsonSerialize.Inclusion.NON_NULL)));
 
     }
 
@@ -101,7 +101,7 @@ public class CategorieControllerTest {
     public void checkGetById() throws Exception {
         mockMvc.perform(get("/categorie/1")).andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(content().bytes(IntegrationTestUtil.convertObjectToJsonBytes(categories.get(1))));
+                .andExpect(content().bytes(IntegrationTestUtil.convertObjectToJsonBytes(categories.get(1), JsonSerialize.Inclusion.NON_NULL)));
 
     }
 
@@ -128,9 +128,9 @@ public class CategorieControllerTest {
     public void checkCreateCategorie() throws Exception {
         mockMvc.perform(
                 put("/categorie").contentType(IntegrationTestUtil.APPLICATION_JSON_UTF8).content(
-                        IntegrationTestUtil.convertObjectToJsonBytes(categorieTmp))).andExpect(status().isOk())
+                        IntegrationTestUtil.convertObjectToJsonBytes(categorieTmp, JsonSerialize.Inclusion.ALWAYS))).andExpect(status().isOk())
                 .andExpect(content().contentType(IntegrationTestUtil.APPLICATION_JSON_UTF8))
-                .andExpect(content().bytes(IntegrationTestUtil.convertObjectToJsonBytes(categorieTmp)));
+                .andExpect(content().bytes(IntegrationTestUtil.convertObjectToJsonBytes(categorieTmp, JsonSerialize.Inclusion.ALWAYS)));
         Assert.assertEquals(categories.size(), 4);
 
     }

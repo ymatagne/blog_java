@@ -1,75 +1,81 @@
-<div id="articleDetail">
-	<div class="form-horizontal">
-		<h4 ng-bind-html="article.titre"></h4>
-		<p class="muted">
-			<small>Article published on {{article.dateCreation |
-				date:'MM/dd/yyyy'}} by <a ng-click="goToArticleAuteur(article)">{{article.auteur.nom}}
-					{{article.auteur.prenom}}</a>
-			</small> <br /> <small>Category: <a
-				ng-click="selectCategorie(article.categorie)">{{article.categorie.nom}}</a></small>
-			<br /> <small>Comments: <a ng-click="goToComments()">{{article.commentaires.length}}</a>
-			</small>
-		</p>
-		<legend></legend>
-		<article ng-bind-html="article.article"></article>
-		<br />
-		<legend></legend>
-		<h4>Others articles:</h4>
-		<div
-			ng-repeat="otherArticle in otherArticles |filter:{categorie.id:article.categorie.id,id:'!'+article.id,valide:true}">
-			<a href="#/article/{{otherArticle.id}}">
-				{{otherArticle.dateCreation | date:'MM/dd/yyyy'}} -
-				{{otherArticle.titre}}</a>
-		</div>
-		<br />
-		<legend></legend>
-		<h4 id="titleComment">Comments ({{article.commentaires.length}})</h4>
-		<div class="well" ng-repeat="commentaire in article.commentaires">
-			<p class="muted">
-				<small>{{commentaire.email}} wrote
-					{{commentaire.dateCreation | date:'short'}} : </small>
-			</p>
-			<p>{{commentaire.commentaire}}</p>
-			<a ng-show="cookieStore.get('USER').admin"
-				ng-click="deleteComments(commentaire)">delete comment <i
-				class="icon-trash"></i></a>
+<div class="col-md-10" role="main">
+    <ul>
+        <div class="row row-container">
+            <div class="col-md-9 articleSeparation">
+                <h4 ng-bind-html="article.titre"></h4>
 
-		</div>
-		<legend></legend>
-		<h4>Add a comment</h4>
+                <p class="muted">
+                    <small>Article publié le {{article.dateCreation |
+                        date:'dd/MM/yyyy'}} par <a href="" ng-click="goToArticleAuteur(article)">{{article.auteur.nom}}
+                            {{article.auteur.prenom}}</a>
+                    </small>
+                    <br/>
+                    <small>Commentaires: <a href="" ng-click="goToComments()">{{article.commentaires.length}}</a>
+                    </small>
+                </p>
+            </div>
+            <div class="col-md-3" role="main">
 
-		<form name="commentaireForm" class="form" novalidate
-			ng-submit="submitForm();">
-			<div ng-show="displayError">Please agree and sign.</div>
+                <div class="categorieImg">
+                    <label class="labelCategorie">{{article.categorie.nom}}</label>
+                </div>
 
-			<fieldset>
-				<div class="control-group">
-					<label class="control-label" for="commentaire.email">Email</label>
-					<div class="controls">
-						<input type="email" id="commentaire.email"
-							ng-model="commentaire.email" placeholder="Email" required />
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="commentaire.commentaire">Message</label>
-					<div class="controls">
-						<textarea type="text" rows="3" id="commentaire.commentaire"
-							ng-model="commentaire.commentaire" placeholder="Message" required></textarea>
-					</div>
-				</div>
-				<div class="control-group">
-					<div class="controls">
-						<button type="submit" class="btn btn-primary"
-							ng-disabled="commentaireForm.$invalid">Add</button>
-					</div>
-				</div>
-			</fieldset>
+                <a twitter data-url='#/article/{{article.id}}' data-text='Testing Twitter Share'></a>
 
-			<br />
-			<button class="btn" ng-click="gotoArticleListPage()">Back</button>
-			<br />
+                <div class="g-plusone" data-annotation="inline" data-width="200"
+                     href="#/article/{{article.id}}"></div>
+            </div>
+        </div>
+        <legend class="legend_article_detail"></legend>
+        <article ng-bind-html="article.article"></article>
+        <br/>
+        <legend id="titleComment" class="legend_article_detail"></legend>
+        <p class="lead">Autres articles</p>
 
-		</form>
+        <div
+                ng-repeat="otherArticle in otherArticles |filter:{valide:true,id:'!'+article.id,categorie:article.categorie}">
+            <a href="#/article/{{otherArticle.id}}">
+                {{otherArticle.dateCreation | date:'dd/MM/yyyy'}} -
+                {{otherArticle.titre}}</a>
+        </div>
+        <br/>
+        <legend class="legend_article_detail"></legend>
+        <p class="lead">Commentaires ({{article.commentaires.length}})</p>
 
-	</div>
+        <div class="alert alert-info" ng-repeat="commentaire in article.commentaires">
+            <small>{{commentaire.email}} a écrit le
+                {{commentaire.dateCreation | date:'dd/MM/yyyy'}} :
+            </small>
+            <br/>
+            <label>{{commentaire.commentaire}}</label>
+        </div>
+
+        <p class="lead ">Laissez un commentaire</p>
+
+        <form class="form-horizontal" role="form" name="commentaireForm" novalidate
+              ng-submit="submitForm();">
+            <div class="form-group">
+                <div class="col-sm-5">
+                    <input type="email" class="form-control" id="commentaire.email"
+                           ng-model="commentaire.email" placeholder="Entrez votre Email" required/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-5">
+                    <textarea class="form-control" type="text" rows="3" id="commentaire.commentaire"
+                              ng-model="commentaire.commentaire" placeholder="Entrez votre message"
+                              required></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-5">
+                    <button type="submit" class="btn btn-default"
+                            ng-disabled="commentaireForm.$invalid">Valider
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <button class="btn btn-warning" ng-click="gotoArticleListPage()">Retour</button>
+    </ul>
 </div>

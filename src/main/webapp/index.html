@@ -1,44 +1,63 @@
 <!doctype html>
 <html class="no-js" ng-app="blogApp">
 <head>
-<meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Un ch'ti maroille café !</title>
-<meta name="description" content="">
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/bootstrap-theme.min.css" rel="stylesheet">
-<link href="css/app.css" rel="stylesheet">
-</head>
-<body>
-	<div menu></div>
-	<div class="container">
-		<div class="row row-container">
-			<div class="col-md-3">
-				<div edito class="blog-edito hidden-print affix"></div>
-			</div>
-			<div class="col-md-9" role="main">
-				<div ng-view></div>
-			</div>
-		</div>
-	</div>
-	<div footer></div>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YANews le blog</title>
+    <meta name="description" content="">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/animate.css"/>
 
-	<script src="lib/angular/angular.js"></script>
-	<script src="lib/angular/angular-cookies.js"></script>
-	<script src="lib/angular/angular-resource.js"></script>
-	<script src="lib/angular/angular-route.js"></script>
-	<script src="lib/angular/angular-sanitize.js"></script>
-	<script src="lib/others/jquery.js"></script>
-	<script src="lib/angular/ui-bootstrap.js"></script>
-	<script src="lib/angular/ui-bootstrap-tpls.js"></script>
-	<script src="lib/tinymce/jquery.tinymce.min.js"></script>
-	<script src="lib/tinymce/tinymce.min.js"></script>
-	<script src="lib/angular/ui-tinymce.js"></script>
-	<script src="js/app.js"></script>
-	<script src="js/services.js"></script>
-	<script src="js/controllers.js"></script>
-	<script src="js/filters.js"></script>
-	<script src="js/directives.js"></script>
+
+</head>
+<body ng-cloak>
+<div menu></div>
+
+<div class="container">
+    <div class="row row-container">
+        <div class="col-md-2">
+            <div edito></div>
+        </div>
+        <div ng-view class="tata"></div>
+    </div>
+</div>
+
+<div footer></div>
+
+<script src="lib/angular/angular.js"></script>
+<script src="lib/angular/angular-animate.js"></script>
+<script src="lib/angular/angular-cookies.js"></script>
+<script src="lib/angular/angular-resource.js"></script>
+<script src="lib/angular/angular-route.js"></script>
+<script src="lib/angular/angular-sanitize.js"></script>
+<script src="http://platform.twitter.com/widgets.js"></script>
+<script src="lib/others/jquery.js"></script>
+<script src="lib/angular/ui-bootstrap.js"></script>
+<script src="lib/angular/ui-bootstrap-tpls.js"></script>
+<script src="lib/tinymce/jquery.tinymce.min.js"></script>
+<script src="lib/tinymce/tinymce.min.js"></script>
+<script src="lib/angular/ui-tinymce.js"></script>
+<script src="js/app.js"></script>
+<script src="js/services.js"></script>
+<script src="js/controllers.js"></script>
+<script src="js/filters.js"></script>
+<script src="js/directives.js"></script>
+
+<script type="text/javascript">
+    window.___gcfg = {lang: 'fr'};
+
+    (function () {
+        var po = document.createElement('script');
+        po.type = 'text/javascript';
+        po.async = true;
+        po.src = 'https://apis.google.com/js/platform.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(po, s);
+    })();
+</script>
+
 </body>
 </html>

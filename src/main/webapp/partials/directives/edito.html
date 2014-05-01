@@ -1,15 +1,10 @@
-
-<div class="well">
-	<h4>Hello !</h4>
-	<div class="title presentation">
-		<a class="premiere">me</a><a class="deuxieme">.</a><a
-			class="troisieme">getBlog</a><a class="quatrieme">(</a><a
-			class="quatrieme">)</a>
-	</div>
-	<p>&nbsp;was created in order to share my knowledge and experiences
-		!</p>
-	<p>Problem solving, how to, technical studies, factoring,advices ,
-		agility ...all subjects will be treated!</p>
-	<p>Hoping that this blog will be useful, I hope you enjoy reading!</p>
+<div class="hidden-print affix-top menu-gauche" role="complementary">
+    <ul class="nav">
+        <li class="active">
+            <a id="categorie_tous" href ng-click="selectCategorie('all')">Tous</a>
+        </li>
+        <li ng-repeat="categorie in categories">
+            <a id="lien__categorie_{{categorie.nom}}" href ng-click="selectCategorie(categorie.nom)">{{categorie.nom}}</a>
+        </li>
+    </ul>
 </div>
-<div authentification></div>

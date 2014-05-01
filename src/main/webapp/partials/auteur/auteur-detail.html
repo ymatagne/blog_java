@@ -1,20 +1,12 @@
 <div id="auteurDetail">
+    <p class="lead">{{auteur.prenom}} {{auteur.nom}} se présente !</p>
 
-    <h2>Detail</h2>
 
-    <div class="auteurTitre">{{auteur.email}}</div>
-    
-    
-    <div class="auteurTitre">{{auteur.nom}}</div>
-    
-    
-    <div class="auteurTitre">{{auteur.prenom}}</div>
-    
-    
-    <div class="auteurTitre">{{auteur.admin}}</div>
 
-    <hr/>
 
-    <button class="btn" ng-click="gotoAuteurListPage()">&lt; Retour</button>
+
+    <p>Son adresse mail est :<a href="">{{auteur.email}}</a></p>
+
+    <button class="btn btn-warning" ng-click="gotoAuteurListPage()">Retour</button>
 
 </div>

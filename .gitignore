@@ -9,3 +9,6 @@ target/*
 
 db
 db/**
+
+.idea
+*iml

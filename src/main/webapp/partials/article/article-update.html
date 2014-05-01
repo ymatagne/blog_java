@@ -1,40 +1,86 @@
 <div id="articleUpdate">
+    <p class="lead">Mise à jour de l'article</p>
 
-	<form name="article" class="form-horizontal">
-		<div ng-show="displayError">Please agree and sign.</div>
-		<fieldset>
-			<h4>Modify article</h4>
-			<accordion close-others="false"> <accordion-group
-				heading="Title of your article" is-open="true"> <input
-				id="article.titre" type="text" ng-model="article.titre"
-				placeholder="Enter your title..." required /> </accordion-group> <accordion-group
-				heading="Resume in a few lines" is-open="true"> <textarea
-				class="field span12" id="article.resume" rows="4"
-				ng-model="article.resume" placeholder="Enter resume..."></textarea>
-			</accordion-group> <accordion-group heading="Write your article" is-open="true">
-			<textarea id="tinymce" ui-tinymce ng-model="article.article"
-				placeholder="Enter article..."></textarea> </accordion-group> <accordion-group
-				heading="Categorize your article" required is-open="true">
-			<label for="article.categorie">Choose your category : </label> <select
-				id="article.categorie" ng-model="article.categorie.id"
-				ng-options="cat.id as cat.nom for cat in categories" required></select>
-</div>
-</accordion-group>
-</accordion>
+    <form name="form" class="form-horizontal">
 
+        <div class="form-group">
+            <label for="article.titre" class="col-sm-2 control-label">Titre</label>
 
+            <div class="col-sm-8">
+                <input name="titre" type="text" class="form-control" id="article.titre" placeholder="Titre de l'article"
+                       ng-model="article.titre" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="article.resume" class="col-sm-2 control-label">Résumé</label>
+
+            <div class="col-sm-8">
+                <textarea name="titre" type="text" class="form-control" id="article.resume"
+                          placeholder="Résumé de l'article"
+                          ng-model="article.resume" rows="5" required></textarea>
+            </div>
+        </div>
 
 
+        <div class="form-group">
+            <label for="article.titre" class="col-sm-2 control-label">Article</label>
+
+            <div class="col-sm-8">
+                <textarea name="article" class="form-control"
+                          id="tinymce" ui-tinymce ng-model="article.article"
+                          placeholder="Contenu de l'article..." rows="15" required></textarea>
+            </div>
+        </div>
 
 
-<br />
-<button class="btn" ng-click="gotoArticleListPage()">Back</button>
-&nbsp;
-<button class="btn btn-primary" ng-click="submit()"
-	ng-disabled="article.$invalid">Save</button>
-</fieldset>
-</form>
+        <div class="form-group">
+            <label for="article.categorie" class="col-sm-2 control-label">Catégorie</label>
 
-<br />
-<br />
+            <div class="col-sm-2">
+                <select
+                        id="article.categorie" ng-model="article.categorie.id" class="form-control"
+                        ng-options="categorie.id as categorie.nom for categorie in categories"
+                        required></select>
+            </div>
+        </div>
+
+        <p class="lead">Liste des commentaires sur l'article</p>
+
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Email</th>
+                <th>Commentaire</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="commentaire in article.commentaires">
+                <td>{{$index}}</td>
+                <td>{{commentaire.email}}</td>
+                <td>{{commentaire.commentaire}}</td>
+                <td><a href="" ng-click="deleteComments(commentaire)"
+                       ng-show="user.admin==true"><span
+                        class="glyphicon glyphicon-trash"></span></a>
+                </td>
+
+
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-5">
+                <button class="btn btn-warning" ng-click="gotoArticleListPage()">Annuler</button>
+                &nbsp;
+                <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary" ng-click="submit()">
+                    Valider
+                </button>
+            </div>
+        </div>
+
+    </form>
 </div>

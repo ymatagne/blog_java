@@ -48,7 +48,7 @@ public class AuteurController {
     /**
      * Permet de récueprer un auteur via son id
      * 
-     * @param id de l'auteur à récuperer
+     * @param email de l'auteur à récuperer
      * @return l'auteur
      * @throws Exception
      */
@@ -79,8 +79,8 @@ public class AuteurController {
      * @return l'auteur créer avec son id
      * @throws DuplicateUserEmail email deja present en base
      */
-    @RequestMapping(value = "/auteur", method = RequestMethod.PUT)
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @RequestMapping(value = "/auteur", method = RequestMethod.PUT, headers = "Accept=*/*", produces = "application/json;charset=UTF-8")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @ResponseBody
     public Auteur create(@RequestBody final Auteur auteur) {
         try {

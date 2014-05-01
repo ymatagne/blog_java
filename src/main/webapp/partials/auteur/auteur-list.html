@@ -1,18 +1,26 @@
 <div id="auteurList">
-	<h4>Authors:</h4>
+    <p class="lead">Administration des utilisateurs</p>
 
-	<ul>
-		<article class="well" ng-repeat="auteur in auteurs">
-			<p>{{auteur.email}}</p>
-			<a href="#/auteur/update/{{auteur.id}}"><i class="icon-edit"></i>
-				edit</a><a ng-click="deleteAuteur(auteur)"><i class="icon-trash"></i>
-				delete</a>
-		</article>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Mail de l'utilisateur</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="auteur in auteurs">
+            <td>{{$index}}</td>
+            <td>{{auteur.email}}</td>
+            <td><a href="#/auteur/update/{{auteur.id}}"><span class="glyphicon glyphicon-pencil"></span>
+            </a> <a ng-click="deleteAuteur(auteur)"><i
+                    class="icon-trash"></i><span class="glyphicon glyphicon-trash"></span></a></td>
+        </tr>
+        </tbody>
+    </table>
 
-	</ul>
-	<button class="btn btn-primary" ng-click="gotoAuteurNewPage()">New
-		authors</button>
-	<br />
-	<br />
+    <button class="btn btn-primary" ng-click="gotoAuteurNewPage()">Créer
+    </button>
 
 </div>

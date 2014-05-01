@@ -1,35 +1,38 @@
 <header class="navbar navbar-fixed-top blog-header" role="banner">
 	<div class="container">
 		<div class="navbar-header">
-			<a href="#" ng-click="uploadArticles()" class="navbar-brand">me.getBlog({{selectedCategorie.nom}})</a>
-		</div>
+            <img class="image-header" src="../img/header.png">
+            <img ng-click="gotoHome()" class="image-logo" src="../img/logoBlog.png">
+        </div>
 		<nav class="collapse navbar-collapse bs-navbar-collapse"
 			role="navigation">
-			<ul class="nav navbar-nav">
-				<li class="open">
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					role="button"> <b class="deuxieme">.</b><b class="troisieme">addCategory</b><b
-						class="quatrieme">()</b><b class="caret"></b>
-				</a>
-					<ul class="dropdown-menu">
-						<li ng-repeat="categorie in categories"><a
-							ng-click="selectCategorie(categorie)">{{categorie.nom}}</a></li>
-					</ul></li>
-				<li class="divider-vertical"></li>
-				<li><a class="dropCategorie" ng-click="dropCategorie()"> <b
-						class="deuxieme">.</b><b class="troisieme">dropCategory</b><b
-						class="quatrieme">()</b></a></li>
-				<li class="divider-vertical"></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
+            <!--<img class="image-header" src="../img/header.png">-->
+
+            <ul class="nav navbar-nav navbar-right">
+
 				<form class="navbar-form navbar-left" role="search">
+                    <div id="bloc-connexion" class="form-group">
+                        <a ng-click="openPopupIdentification()" ng-show="user==null">S'identifier</a>
+                        <li ng-show="user!=null" class="dropdown">
+                            <a class="dropdown-toggle">
+                                Bonjour {{user.prenom}}<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" >
+                                <li role="presentation"><a ng-click="gotoListArticle()" ><span class="glyphicon glyphicon-home"></span> Accueil</a></li>
+                                <li ng-hide="user == null" role="presentation"><a ng-click="gotoListInvalidArticle()"><span class="glyphicon glyphicon-list"> Liste des articles</span></a></li>
+                                <li ng-hide="!user.admin" role="presentation"><a ng-click="gotoCategorieListPage()"><span class="glyphicon glyphicon-list"> Liste des catégories</span></a></li>
+                                <li ng-hide="!user.admin" role="presentation"><a ng-click="gotoAuteurListPage()"><span class="glyphicon glyphicon-list"> Liste des utilisateurs</span></a></li>
+                                <li role="presentation" class="divider"></li>
+                                <li role="presentation"><a ng-click="logout()"><span class="glyphicon glyphicon-off"> Déconnexion</span></a></li>
+                            </ul>
+                        </li>
+                    </div>
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Rechercher"
+                        <input type="text" class="form-control" placeholder="Rechercher"
 							ng-model="searchModel" ng-change="searchChange(searchModel)">
 					</div>
 				</form>
 			</ul>
 		</nav>
 	</div>
-	<!-- 	</div> -->
 </header>

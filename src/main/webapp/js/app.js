@@ -3,25 +3,33 @@
 angular.module(
 		'blogApp',
 		[ 'ngRoute','ngCookies', 'ui.tinymce', 'ui.bootstrap', 'blogApp.filters',
-				'blogApp.services', 'blogApp.directives','ngSanitize' ]).config(
+				'blogApp.services', 'blogApp.directives','ngSanitize','ngAnimate']).config(
 		[ '$routeProvider', function($routeProvider) {
-			$routeProvider.when('/article/list', {
+			$routeProvider.when('/article/:categorie', {
 				templateUrl : 'partials/article/article-list.html',
 				controller : ArticleListController,
 				role : 'USER'
-			}).when('/article/new', {
+			}).when('/article', {
+                templateUrl : 'partials/article/article-list.html',
+                controller : ArticleListController,
+                role : 'USER'
+            }).when('/article/new', {
 				templateUrl : 'partials/article/article-new.html',
 				controller : ArticleNewController,
 				role : 'AUTHOR'
 			}).when('/article/update/:id', {
 				templateUrl : 'partials/article/article-update.html',
 				controller : ArticleUpdateController,
-				role : 'ADMIN'
-			}).when('/article/:id', {
+				role : 'AUTHOR'
+			}).when('/article/:categorie/:id', {
 				templateUrl : 'partials/article/article-detail.html',
 				controller : ArticleDetailController,
 				role : 'USER'
-			})
+			}).when('/article/list/admin', {
+                templateUrl : 'partials/article/article-list-admin.html',
+                controller : ArticleListController,
+                role : 'AUTHOR'
+            })
 
 			.when('/categorie/list', {
 				templateUrl : 'partials/categorie/categorie-list.html',
@@ -62,7 +70,7 @@ angular.module(
 				templateUrl : 'partials/authentification/erreur.html'
 			})
 			.otherwise({
-				redirectTo : '/article/list'
+				redirectTo : '/article/'
 			});
 		} ]).run(
 		function($rootScope, $cookieStore, $location, initCookie) {

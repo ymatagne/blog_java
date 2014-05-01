@@ -10,6 +10,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.List;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -59,7 +60,6 @@ public class BlogControllerTest {
         categorie.setNom("nom categorie");
         articleTmp = new Article();
         articleTmp.setTitre("Titre5");
-        articleTmp.setId("5");
         articleTmp.setArticle("article");
         articleTmp.setAuteur(auteur);
         articleTmp.setCategorie(categorie);
@@ -104,7 +104,7 @@ public class BlogControllerTest {
     public void checkGetAllArticles() throws Exception {
         mockMvc.perform(get("/article")).andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(content().bytes(IntegrationTestUtil.convertObjectToJsonBytes(articles)));
+                .andExpect(content().bytes(IntegrationTestUtil.convertObjectToJsonBytes(articles, JsonSerialize.Inclusion.ALWAYS)));
 
     }
 
@@ -118,7 +118,7 @@ public class BlogControllerTest {
     public void checkGetById() throws Exception {
         mockMvc.perform(get("/article/1")).andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(content().bytes(IntegrationTestUtil.convertObjectToJsonBytes(articles.get(1))));
+                .andExpect(content().bytes(IntegrationTestUtil.convertObjectToJsonBytes(articles.get(1), JsonSerialize.Inclusion.ALWAYS)));
 
     }
 
@@ -145,9 +145,9 @@ public class BlogControllerTest {
     public void checkCreateArticle() throws Exception {
         mockMvc.perform(
                 put("/article").contentType(IntegrationTestUtil.APPLICATION_JSON_UTF8).content(
-                        IntegrationTestUtil.convertObjectToJsonBytes(articleTmp))).andExpect(status().isOk())
+                        IntegrationTestUtil.convertObjectToJsonBytes(articleTmp, JsonSerialize.Inclusion.NON_NULL))).andExpect(status().isOk())
                 .andExpect(content().contentType(IntegrationTestUtil.APPLICATION_JSON_UTF8));
-        Assert.assertEquals(articles.size(), 3);
+        Assert.assertEquals(articles.size(), 4);
 
     }
 

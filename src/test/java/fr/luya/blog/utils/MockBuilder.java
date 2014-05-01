@@ -11,7 +11,7 @@ import fr.luya.blog.document.Commentaire;
 
 /**
  * Permet la création d'objet pour test
- * 
+ *
  * @author luya
  */
 public final class MockBuilder {
@@ -21,7 +21,7 @@ public final class MockBuilder {
 
     /**
      * Permet de creer une liste d article mocke
-     * 
+     *
      * @return une liste d article
      */
     public static List<Article> mockArticles() {
@@ -94,20 +94,23 @@ public final class MockBuilder {
     public static List<Auteur> mockAuteurs() {
         final List<Auteur> auteurs = new ArrayList<Auteur>();
         final Auteur auteur = new Auteur();
+        auteur.setId("1");
         auteur.setAdmin(true);
-        auteur.setEmail("email");
+        auteur.setEmail("email1");
         auteur.setNom("nom");
         auteur.setPassword("pass");
         auteur.setPrenom("prenom");
         final Auteur auteur1 = new Auteur();
+        auteur1.setId("2");
         auteur1.setAdmin(true);
-        auteur1.setEmail("email");
+        auteur1.setEmail("email2");
         auteur1.setNom("nom1");
         auteur1.setPassword("pass1");
         auteur1.setPrenom("prenom1");
         final Auteur auteur2 = new Auteur();
+        auteur2.setId("3");
         auteur2.setAdmin(true);
-        auteur2.setEmail("email");
+        auteur2.setEmail("email3");
         auteur2.setNom("nom2");
         auteur2.setPassword("pass2");
         auteur2.setPrenom("prenom2");

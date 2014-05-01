@@ -1,36 +1,39 @@
-<div class="well">
-	<div id="loging">
-		<h4>Connexion</h4>
-		<div id="loginAlert" class="text-error"></div>
-		<form class="form-horizontal">
-			<fieldset>
-				<div class="control-group">
-					<label for="auteur.email">Email</label> <input type="text"
-						id="auteur.email" placeholder="Email" ng-model="auteur.email">
-				</div>
-				
-				<div class="control-group">
-					<label for="auteur.password">Password</label> <input
-						type="password" id="auteur.password" placeholder="Password"
-						ng-model="auteur.password">
-				</div>
-				<div class="control-group">
-					<button type="submit" class="btn" ng-click="login()">Sign
-						in</button>
-				</div>
-			</fieldset>
-
-		</form>
-	</div>
-	<div id="menuAdmin">
-		<h4>{{auteur.email}} is connected</h4>
-		<ul class="nav">
-			<li><a ng-click="gotoListArticle()" ><i class="icon-home"></i> Home</a></li>
-			<li ng-hide="!auteur.admin"><a ng-click="gotoListInvalidArticle()"><i class="icon-pencil"></i> List of invalid article</a></li>			
-			<li><a ng-click="gotoArticleNewPage()"><i class="icon-pencil"></i> Create new article</a></li>
-			<li ng-hide="!auteur.admin"><a ng-click="gotoCategorieListPage()"><i class="icon-plus"></i> List of category</a></li>
-			<li ng-hide="!auteur.admin"><a ng-click="gotoAuteurListPage()"><i class="icon-plus"></i> List of user</a></li>
-			<li><a ng-click="logout()"><i class="icon-off"></i> Logout</a></li>
-		</ul>
-	</div>
+<div class="modal-header">
+    <h3>Identification</h3>
 </div>
+<form class="form-horizontal" name="form" role="form" novalidate>
+    <div id="loginAlert">
+        <span ng-hide="erreurLoginPassword" class="label label-danger text-error">L'adresse email ou le mot de passe est incorrect</span>
+    </div>
+    <div class="modal-body">
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="user.email">Email</label>
+
+            <div class="col-sm-5">
+                <input type="email" class="form-control" id="user.email" placeholder="Email" ng-model="user.email"
+                       name="email" required>
+            </div>
+            <div ng-show="form.email.$dirty && form.email.$invalid">
+                <span ng-show="form.email.$error.required" class="label label-danger">L'email est obligatoire.</span>
+                <span ng-show="form.email.$error.email" class="label label-danger">Le format de l'email n'est pas valide.</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="user.password">Mot de passe</label>
+
+            <div class="col-sm-5">
+                <input type="password" class="form-control" id="user.password" placeholder="Password"
+                       ng-model="user.password" ng-enter="login()" required>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-warning" ng-click="annuler()">Annuler</button>
+        <button class="btn btn-primary" ng-click="login()" ng-disabled="form.$invalid" focus-me="!form.$invalid" >Connexion</button>
+    </div>
+
+</form>

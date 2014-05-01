@@ -1,37 +1,45 @@
 <div id="articleList">
-	<ul>
-		<article class="well"
-			ng-repeat="article in articles | filter: sharedProperties.getProperty()|filter:filterFunction">
 
-			<h4>
-				<a href="#/article/{{article.id}}"
-					ng-bind-html-unsafe="article.titre"></a>
-			</h4>
-			<a ng-show="cookieStore.get('USER').admin"
-				href="#/article/update/{{article.id}}"><i class="icon-edit"></i>
-				edit</a> <a ng-show="cookieStore.get('USER').admin"
-				ng-click="deleteArticle(article)"><i class="icon-trash"></i>
-				delete</a> <a ng-show="cookieStore.get('USER').admin && article.valide"
-				ng-click="valid(article,false)"><i class="icon-remove"></i>
-				invalid</a><a ng-show="cookieStore.get('USER').admin && !article.valide"
-				ng-click="valid(article,true)"><i class=" icon-ok"></i> valid</a>
-			<p class="muted">
-				<small> Article published on {{article.dateCreation |
-					date:'MM/dd/yyyy'}} by <a ng-click="goToArticleAuteur(article)">{{article.auteur.nom}}
-						{{article.auteur.prenom}}</a>
-				</small> <br /> <small> Category: <a
-					ng-click="selectCategorie(article.categorie)">{{article.categorie.nom}}</a></small>
-				<br /> <small>Comments: {{article.commentaires.length}}</small>
-			</p>
-			<legend></legend>
-			<p ng-bind-html-unsafe="article.resume"></p>
-			<p>
-				<a href="#/article/{{article.id}}">Read more >></a>
-			</p>
-		</article>
+    <div class="col-md-10" role="main">
+        <ul>
+            <article class="articleClass"
+                     ng-repeat="article in articles | filter: sharedProperties.getProperty()|filter:filterFunction">
+                <div class="row row-container">
+                    <div class="col-md-9 articleSeparation">
+                        <h4>
+                            <a href ng-click="gotoArticle(article)" ng-bind-html="article.titre"></a>
+                        </h4>
 
-	</ul>
+                        <p class="muted">
+                            <small> Article publié le {{article.dateCreation |
+                                date:'MM/dd/yyyy'}} par <a href="" ng-click="goToArticleAuteur(article)">{{article.auteur.nom}}
+                                    {{article.auteur.prenom}}</a>
+                            </small>
+
+                        </p>
 
 
+                        <legend></legend>
+                        <p ng-bind-html="article.resume"></p>
 
+                        <p>
+                            <a href ng-click="gotoArticle(article)" >Suite de l'article >></a>
+                        </p>
+
+                    </div>
+                    <div class="col-md-3" role="main">
+
+                        <div class="categorieImg">
+                            <label class="labelCategorie">{{article.categorie.nom}}</label>
+                        </div>
+
+                        <a twitter  data-text='Testing Twitter Share'></a>
+
+                        <div class="g-plusone" data-annotation="inline" data-width="200" ></div>
+
+                    </div>
+                </div>
+            </article>
+        </ul>
+    </div>
 </div>

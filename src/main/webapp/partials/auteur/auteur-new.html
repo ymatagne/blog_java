@@ -1,37 +1,72 @@
 <div id="auteurNew">
+    <p class="lead">Créer un nouveau utilisateur</p>
 
-	<form name="auteur" class="form-horizontal">
-		<fieldset>
-			<h4>Create a new author</h4>
-			<accordion close-others="false"> <accordion-group
-				heading="Email of your author" is-open="true"> <input
-				id="auteur.email" type="text" ng-model="auteur.email"
-				placeholder="Enter your mail..." required /> <span ng-show="erreur"
-				class="label label-important">Email exist !</span> </accordion-group> <accordion-group
-				heading="Name of your author" is-open="true"> <input
-				id="auteur.nom" type="text" ng-model="auteur.nom"
-				placeholder="Enter your name..." required /> </accordion-group> <accordion-group
-				heading="First Name of your author" is-open="true">
-			<input id="auteur.prenom" type="text" ng-model="auteur.prenom"
-				placeholder="Enter your first name..." required /> </accordion-group> <accordion-group
-				heading="Password of your author" is-open="true">
-			<input id="auteur.password" type="password"
-				ng-model="auteur.password" placeholder="Enter your password..."
-				required /> </accordion-group> <accordion-group heading="Role of your author"
-				is-open="true"> <input id="auteur.admin"
-				type="checkbox" ng-model="auteur.admin" /> Admin</accordion-group> </accordion>
+    <form name="form" class="form-horizontal">
 
+        <div class="form-group">
+            <label for="auteur.email" class="col-sm-2 control-label">Email</label>
 
+            <div class="col-sm-5">
+                <input name="email" type="text" class="form-control" id="auteur.email" placeholder="Mail de l'utilisateur"
+                       ng-model="auteur.email" required>
+                <span ng-show="erreur"
+                      class="label label-danger">Cette adresse Mail existe déjà.</span>
+            </div>
+        </div>
 
-			<br />
-			<button class="btn" ng-click="gotoAuteurListPage()">Back</button>
-			&nbsp;
-			<button class="btn btn-primary" ng-disabled="auteur.$invalid"
-				ng-click="submit()">Save</button>
-		</fieldset>
+        <div class="form-group">
+            <label for="auteur.nom" class="col-sm-2 control-label">Nom</label>
+
+            <div class="col-sm-5">
+                <input name="nom" type="text" class="form-control" id="auteur.nom"
+                       ng-model="auteur.nom" placeholder="Nom de l'utilisateur" required>
+            </div>
+        </div>
 
 
+        <div class="form-group">
+            <label for="auteur.prenom" class="col-sm-2 control-label">Prénom</label>
 
-	</form>
+            <div class="col-sm-5">
+                <input name="prenom" type="text" class="form-control" id="auteur.prenom"
+                       placeholder="Prénom de l'utilisateur" ng-model="auteur.prenom" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="auteur.password" class="col-sm-2 control-label">Mot de passe</label>
+
+            <div class="col-sm-5">
+                <input name="password" type="password" class="form-control" id="auteur.password"
+                       placeholder="Mot de passe de l'utilisateur" ng-model="auteur.password" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="auteur.admin" class="col-sm-2 control-label">Rôle de l'utilisateur</label>
+
+            <div class="col-sm-5">
+
+
+
+
+                                     <span class="input-group-addon">
+                <input name="admin" type="checkbox" class="form-control" id="auteur.admin" ng-model="auteur.admin">
+              </span>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-5">
+                <button class="btn btn-warning" ng-click="gotoAuteurListPage()">Annuler</button>
+                &nbsp;
+                <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary" ng-click="submit()">
+                    Valider
+                </button>
+            </div>
+        </div>
+
+    </form>
 
 </div>

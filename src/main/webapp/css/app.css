@@ -2,100 +2,230 @@
 /*redefinition de classe bootstrap*/
 
 body {
-	position: relative;
-	padding-top: 70px;
+    position: relative;
+    padding-top: 150px;
 }
 
 .blog-header {
-	background-color: #f5f5f5;
-	border: 1px solid #d4d4d4;
-	color: #777;
+    background-color: white;
+    /*border-bottom: 1px solid #FFA300;*/
+    color: #777;
+    z-index: 1;
+    height: 150px;
+    /*background-image:url('../img/header.png');*/
 }
 
-.blog-edito {
-	position: fixed;
-	top: 70px;
-	width: 280px;
+.image-header {
+    position: absolute;
+    height: 150px;
+    opacity: 0.5;
+    margin-left: -15px;
+    margin-top: -5px;
+    z-index: 1;
 }
-.container{
-	width:auto;
+
+#bloc-connexion {
+    display: block;
+    cursor: pointer;
 }
+
+.menu-gauche {
+    text-align: right;
+}
+
+.menu-gauche .nav > .active > a {
+    padding-right: 18px;
+    font-weight: 700;
+    color: #FFA300;
+    background-color: transparent;
+    border-right: 2px solid #FFA300;
+}
+
+.menu-gauche .nav > li > a {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: #999;
+    padding: 4px 20px;
+    cursor: pointer;
+}
+
+.menu-gauche .nav > li > a:active {
+    padding-right: 18px;
+    font-weight: 700;
+    color: #FFA300;
+    background-color: transparent;
+    border-right: 2px solid #FFA300;
+}
+
+.menu-gauche .nav > li > a:hover {
+    padding-right: 18px;
+    font-weight: 700;
+    color: #FFA300;
+    background-color: transparent;
+    border-right: 2px solid #FFA300;
+}
+
+.container {
+    width: auto;
+}
+
 .blog-footer {
-	background-color: #f5f5f5;
-	border: 1px solid #d4d4d4;
-	color: #777;
-	text-align: center;
-	margin-top:200px;
+    background-color: white;
+    /*border-top: 1px solid #FFA300;*/
+    color: #FFA300;
+    text-align: center;
+    margin-top: 150px;
+    background: url('../img/footer.png') no-repeat 100% 0;
+    /*background-repeat: no-repeat;*/
+    height: 150px;
+    background-size: auto 150px;
+    bottom: 0;
 }
 
-
-.span2>p {
-	text-align: justify;
-	color: #777;
+.span2 > p {
+    text-align: justify;
+    color: #777;
 }
 
 .presentation {
-	margin: 0;
-	color: #777;
+    margin: 0;
+    color: #777;
 }
 
 .title .premiere {
-	text-decoration: none;
-	color: rgb(209, 11, 11)
+    text-decoration: none;
+    color: rgb(209, 11, 11)
 }
 
 .title .deuxieme {
-	text-decoration: none;
-	color: #333333;
+    text-decoration: none;
+    color: #333333;
 }
 
 .deuxieme {
-	text-decoration: none;
-	color: #333333;
+    text-decoration: none;
+    color: #333333;
 }
 
 .title .troisieme {
-	text-decoration: none;
-	color: rgb(209, 11, 11);
+    text-decoration: none;
+    color: rgb(209, 11, 11);
 }
 
 .troisieme {
-	text-decoration: none;
-	color: rgb(209, 11, 11);
+    text-decoration: none;
+    color: rgb(209, 11, 11);
 }
 
 .title .quatrieme {
-	text-decoration: none;
-	color: #333333;
+    text-decoration: none;
+    color: #333333;
 }
 
 .quatrieme {
-	text-decoration: none;
-	color: #333333;
+    text-decoration: none;
+    color: #333333;
 }
 
 .quatrieme_search {
-	float: right;
-	margin-top: -29px;
-	margin-right: -7px;
+    float: right;
+    margin-top: -29px;
+    margin-right: -7px;
 }
 
 /* .container .nav { */
 /* 	float: right; */
 /* } */
 .dropCategorie {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 .container .container-fluid {
-	float: right;
-	margin-top: 2px;
+    float: right;
+    margin-top: 2px;
 }
 
 #searchText {
-	margin: 4px;
+    margin: 4px;
 }
 
-#menuAdmin>ul>li {
-	cursor: pointer;
+#menuAdmin > ul > li {
+    cursor: pointer;
+}
+
+.image-logo {
+    width: 200px;
+    z-index: 1;
+    margin-left: 150px;
+    margin-top: 10px;
+    position: absolute;
+}
+
+#loginAlert {
+    margin-left: 15px;
+    margin-top: 15px;
+}
+
+.categorieImg {
+    width: 150px;
+    background-image: url('../img/categorie.png');
+    height: 50px;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.articleClass {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+
+.myPlaceHolderParent {
+    min-width: 350px;
+}
+
+.myPlaceHolderChild {
+    float: left;
+    border-bottom: chocolate solid 1px;
+    display: block;
+}
+
+.myPlaceHolderInput {
+    border: none;
+    padding: 0 0 0 0;
+    width: 300px;
+}
+
+.myPlaceHolderP {
+    margin: 0 0 0 0;
+
+}
+
+#myPlaceHoldearImg {
+    content: "\270f";
+    float: right;
+}
+
+.articleSeparation {
+    padding-bottom: 15px;
+}
+
+.legend_article_detail {
+    border-bottom: 1px solid #FFA300;
+}
+
+.container-footer {
+}
+.labelCategorie{
+    width: 150px;
+    margin-top: 11px;
+    text-align: center;
+}
+
+.tata .ng-enter {
+    animation: fadeIn 1s;
+}
+
+.tata .ng-leave {
+    animation: fadeOut 1s;
 }

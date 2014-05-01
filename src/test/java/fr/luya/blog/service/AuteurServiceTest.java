@@ -14,7 +14,7 @@ import fr.luya.blog.exceptions.DuplicateUserEmail;
 import fr.luya.blog.repository.AuteurRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "file:src/main/resources/spring/web.xml" })
+@ContextConfiguration(locations = {"file:src/main/resources/spring/web.xml"})
 public class AuteurServiceTest {
     /**
      * Service appelé par le controlleur. Il permet de faire le lien entre le controller et le répository permettant
@@ -65,8 +65,7 @@ public class AuteurServiceTest {
         try {
             service.saveOrUpdate(auteur);
         } catch (DuplicateUserEmail e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            Assert.fail();
         }
     }
 
@@ -75,10 +74,8 @@ public class AuteurServiceTest {
      */
     @Test
     public void shouldDeleteAuteur() {
-        final Auteur auteur = service.findById("email1");
+        final Auteur auteur = service.findByEmail("email1");
         Assert.assertTrue(service.delete(auteur));
         Assert.assertEquals("le nombre d auteur ne correspond pas", 5, service.findAllAuteurs().size());
-        Assert.assertFalse(service.delete(auteur));
-
     }
 }

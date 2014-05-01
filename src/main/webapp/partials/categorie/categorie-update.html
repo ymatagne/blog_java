@@ -1,25 +1,22 @@
-<div id="categorieNew">
-
-	<form name="categorie" class="form-horizontal">
-		<fieldset>
-			<h4>Create a new category</h4>
-
-			<accordion> <accordion-group
-				heading="Name of your category" is-open="true"> <input
-				id="categorie.nom" type="text" ng-model="categorie.nom"
-				placeholder="Enter name of category..." required /> </accordion-group> </accordion>
+<div id="categorieUpdate">
+    <p class="lead">Mise à jour de la  catégorie : {{categorie.nom}}</p>
 
 
+    <form class="form-horizontal" role="form" name="form">
+        <div class="form-group">
+            <label for="categorie.nom" class="col-sm-2 control-label">Nom</label>
+            <div class="col-sm-5">
+                <input name="nom" type="text" class="form-control" id="categorie.nom" placeholder="Nom de la catégorie" ng-model="categorie.nom" required>
+            </div>
+        </div>
 
-
-			<button class="btn" ng-click="gotoCategorieListPage()">Back</button>
-			&nbsp;
-			<button class="btn btn-primary" ng-disabled="categorie.$invalid"
-				ng-click="submit()">Save</button>
-		</fieldset>
-
-
-
-	</form>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-5">
+                <button class="btn btn-warning" ng-click="gotoCategorieListPage()">Annuler</button>
+                &nbsp;
+                <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary" ng-click="submit()">Valider</button>
+            </div>
+        </div>
+    </form>
 
 </div>
